@@ -12,7 +12,7 @@ private Continent AUSTRALIA;
 
     public  Board() {
         initAllTerritoriesAndContinents();
-
+//hi
     }
 
 
