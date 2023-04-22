@@ -65,6 +65,7 @@ private GameLogic gamelogic;
     }
 
 
+
 	public MapHandler giveMapHandler() {
 
 			MapHandler mapHandler = new MapHandler(gamelogic,board);

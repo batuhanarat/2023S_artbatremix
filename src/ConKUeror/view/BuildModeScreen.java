@@ -39,7 +39,7 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
             addBoardFrameAsListener();
             confirmButton.addActionListener(new ConfirmButtonHandler());
             startButton.addActionListener(new StartButtonHandler());
-        
+            helpButton.addActionListener(new HelpButtonHandler());
     }
 
     @Override
@@ -104,6 +104,24 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
         }
         
     }
+    private class HelpButtonHandler implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            
+                dispose();
+                new HelpScreen();
+
+                //System.out.println("Game can start");
+                
+               
+
+            
+
+        }
+        
+    }
+
 
 
 
