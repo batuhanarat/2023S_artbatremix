@@ -12,11 +12,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import org.xml.sax.HandlerBase;
+
 import src.ConKUeror.domain.controller.ButtonHandler;
+import src.ConKUeror.domain.controller.GameHandler;
+import src.ConKUeror.domain.controller.HandlerFactory;
+import src.ConKUeror.domain.controller.PlayerExpertListener;
 import src.ConKUeror.domain.model.Modes.StartMode;
 import src.ConKUeror.domain.model.Player.Player;
+import src.ConKUeror.domain.model.Player.PlayerFactory;
 
-public class PlayerPanel extends JPanel{
+public class PlayerPanel extends JPanel implements PlayerExpertListener{
 
     private ButtonHandler buttonHandler;
 
@@ -40,6 +46,14 @@ public class PlayerPanel extends JPanel{
 
         setUI();
         setPlayerInfos();
+        addPlayerPanelAsListener();
+   }
+
+   public void addPlayerPanelAsListener() {
+
+    GameHandler gameHandler = HandlerFactory.getInstance().giveGameHandler();
+    gameHandler.registerPlayerPanelAsListener(this);
+
    }
 
    public void setUI() {
@@ -89,15 +103,26 @@ public class PlayerPanel extends JPanel{
 }
 
 
+    public void updatePanel(){
 
-
-    public void setPanel(){
-
+    //Update player armys they receive next turn
 
 
     }
+
+    public void changePlayerPanelColor(int oldIndex,int nexIndex, Color color) {
+
+        System.out.println("Observer metodum çalışıyor");
+        JPanel playerPanelOld = playerInfoPanels.get(oldIndex);
+        playerPanelOld.setBackground(Color.WHITE);
+
+        JPanel playerPanelNew = playerInfoPanels.get(nexIndex);
+        playerPanelNew.setBackground(color);
+
+    }
+
     public void clearPlayerInfos() {
-        // Remove old player info panels from UI
+          // Remove old player info panels from UI
           // Remove old player info panels from UI
 
         for (JPanel playerInfoPanel : playerInfoPanels) {

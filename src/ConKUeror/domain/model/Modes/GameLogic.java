@@ -21,6 +21,7 @@ import src.ConKUeror.domain.model.Board.Territory;
 import src.ConKUeror.domain.model.Board.TerritoryCard;
 import src.ConKUeror.domain.model.Board.ArmyCard.ArmyType;
 import src.ConKUeror.domain.model.Player.Player;
+import src.ConKUeror.domain.model.Player.PlayerExpert;
 import src.ConKUeror.domain.model.Player.PlayerInventory;
 
 
@@ -41,13 +42,13 @@ public class GameLogic {
 
   private int attackingArmyUnit;
 
-  
+
 
 
   private Player cardPlayer;
-  
 
-  
+
+
 
   public Boolean selectedButton;
 
@@ -70,18 +71,6 @@ public class GameLogic {
 
     public void addToMemory(Territory t) {
 
-
-    //   if(memory[0] == null) {
-    //     memory[0] = t;
-    //   }
-    //   else if(memory[1] == null) {
-    //     memory[1] = t;
-    //   }
-    //   else {
-    //     memory[0] = memory[1];
-    //     memory[1] = t;
-    //   }
-
         if (memory[0] == null) {
             memory[0] = t;
         } else if (memory[1] == null && memory[0] != t) {
@@ -90,9 +79,9 @@ public class GameLogic {
             memory[0] = memory[1];
             memory[1] = t;
         }
-    
-    
- 
+
+
+
 
     }
 
@@ -106,7 +95,16 @@ public class GameLogic {
 
 
         int currentIndex = orderedPlayerList.indexOf(p1);
-        playerInTurn= orderedPlayerList.get((currentIndex + 1)% orderedPlayerList.size()) ;
+        int newIndex = (currentIndex+1 ) %orderedPlayerList.size();
+
+
+        playerInTurn= orderedPlayerList.get(newIndex);
+
+
+        int oldIndex = currentIndex;
+
+
+        PlayerExpert.publishPlayerInfoEvent(oldIndex, newIndex, playerInTurn.getColor());
 
     }
 
@@ -202,7 +200,7 @@ public class GameLogic {
     }
   }
 
-  
+
 
 
   public void prepareTerritory(Territory t) {
@@ -223,17 +221,17 @@ public class GameLogic {
         TerritoryCard tCard = cc.drawTerritoryCard(playerInTurn);
         if (tCard != null) {
         System.out.println(tCard.getName());
-        
+
         playerInTurn.inv.addTerritoryCard(tCard);
         }
   }
 
   public void useTerritoryCard() {
-        
+
         playerInTurn.inv.useTerritoryCards();
-        
+
   }
-  
+
 
 
   public void addArmyCard() {
@@ -245,7 +243,7 @@ public class GameLogic {
 
 
         }
-        
+
 
 
 
@@ -254,8 +252,8 @@ public class GameLogic {
         // ArmyCard cArmyCard = new ArmyCard("Cavalry Card",ArmyType.CAVALRY);
         // armyCardCounter += 1;
 
-       
-        
+
+
 
         // if (armyCardCounter == 1) {
         //     playerInTurn.inv.addArmyCard(iArmyCard);
@@ -282,7 +280,7 @@ public class GameLogic {
         //     playerInTurn.inv.addArmyCard(iArmyCard);
         //     playerInTurn.inv.addArmyCard(cArmyCard);
         //     playerInTurn.inv.addArmyCard(cArmyCard);
-            
+
         //     System.out.println("1 I + 2 C is added - Case 4");
         // }
 
@@ -290,7 +288,7 @@ public class GameLogic {
         //     playerInTurn.inv.addArmyCard(aArmyCard);
         //     playerInTurn.inv.addArmyCard(cArmyCard);
         //     playerInTurn.inv.addArmyCard(cArmyCard);
-            
+
         //     System.out.println("1 A + 2 C is added - Case 5");
         // }
         // else {
@@ -302,7 +300,7 @@ public class GameLogic {
   public void useArmyCards() {
     playerInTurn.inv.useArmyCards();
     //System.out.println("After Using!");
-    
+
   }
 
 
@@ -432,7 +430,7 @@ public void moveToOtherPhase() {
            System.out.println("Attack");
            this.phaseIndex=4;
            this.inputTerritory=t;
-           
+
            //Map<Integer,Territory>  adjacentList = t.getAdjacencyList();
            List<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
            t.checkAvailableAttacks(territoriesAvailableForAttack);
@@ -465,13 +463,13 @@ public void moveToOtherPhase() {
 
     }
 
-    
+
 
 
     public int getAttackingArmyUnit() {
       return attackingArmyUnit;
     }
-  
+
     public void setAttackingArmyUnit(int attackingArmyUnit) {
       this.attackingArmyUnit = attackingArmyUnit;
     }
@@ -487,7 +485,7 @@ public void moveToOtherPhase() {
       {
           System.out.println("Please choose an attack target");
       }
-      
+
     }
 
 

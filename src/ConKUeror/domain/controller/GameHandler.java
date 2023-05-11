@@ -1,6 +1,9 @@
 package src.ConKUeror.domain.controller;
 
 import java.util.List;
+
+import src.ConKUeror.domain.model.Player.PlayerExpert;
+
 import java.util.ArrayList;
 
 public class GameHandler {
@@ -20,6 +23,12 @@ public class GameHandler {
         return instance;
     }
 
+
+
+    public void registerPlayerPanelAsListener(PlayerExpertListener listener) {
+        PlayerExpert.addPlayerPanelAsListener(listener);
+
+    }
 
 
 
