@@ -11,7 +11,7 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
 
 public class Animation extends JPanel  {
   
-    Arrow arrow = new CurvedArrow();
+    public Arrow arrow = new CurvedArrow();
 
     @Override
     protected void paintComponent(Graphics g) {

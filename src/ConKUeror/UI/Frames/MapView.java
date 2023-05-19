@@ -79,6 +79,7 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         List<TerritoryButton> buttonHistory = new ArrayList<TerritoryButton>();
 
 
+
         public BufferedImage image;
         String armyNum =String.valueOf(0);
         Boolean disable = false;
@@ -184,12 +185,12 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         setSize((int) (1.20 * image.getWidth()), image.getHeight());
         mapPanel = new JPanel() {
             BufferedImage backgroundImage = image;
-            Animation arrow = new Animation();
 
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(backgroundImage, 0, 0, null); // draw the image
+             
             }
         };
         mapPanel.setOpaque(false);
@@ -241,7 +242,7 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
 
             add(mapPanel, BorderLayout.CENTER);
             add(infoPanel, BorderLayout.EAST);
-            
+         
             setResizable(false);
 
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -254,25 +255,50 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         createTerritoryButtons();
         createFunctionalityButtons();
 
+       
+
     }
 
-
+   
+    private boolean running;
+   
+   private Animation Arrow;
     
     @Override
     public void run() {
         
-                 Animation arrow = new Animation();
-                 
-                add(arrow);
+        running = true;
+
+   
+       Animation Arrow = new Animation();
+       
+        add(Arrow);
+                while (running) {
+                     
+                     
+                    try {
+                       
+                        Thread.sleep(10);
+                        Arrow.arrow.move();
+                        Arrow.repaint();
+                       
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }               
+                }
               
         // Create and start the arrow movement thread
-        ArrowMovementThread movementThread = new ArrowMovementThread(arrow);
-        movementThread.start();
+       // ArrowMovementThread movementThread = new ArrowMovementThread(Arrow);
+        //movementThread.start();
+       
+
     }
     
 
 
     public void createTerritoryButtons() {
+       
 
         for(int i= 0 ; i<42 ; i++) {
 
@@ -284,7 +310,8 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
             button.setPreferredSize(new Dimension(40, 40));
             territoryButtonsList.add(button);
 
-
+          
+       
 
             button.addMouseListener(new MouseAdapter() {
 
@@ -303,13 +330,11 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
                          
                             if (t != null) {
 
-                                
-                                System.out.println(t.getId());
-                                Animation animatedObject = new Animation();
+                               
                               
-
                         Thread thread = new Thread(MapView.this);
                         thread.start();
+                        
                             }
 
                         }
