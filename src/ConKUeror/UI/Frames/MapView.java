@@ -24,7 +24,8 @@
     import javax.swing.JPanel;
 
     import src.ConKUeror.UI.Buttons.TerritoryButton;
-    import src.ConKUeror.UI.HelpScreen.HelpScreen;
+import src.ConKUeror.UI.Frames.ArrowAnimation.Animation;
+import src.ConKUeror.UI.HelpScreen.HelpScreen;
     import src.ConKUeror.UI.Panels.InfoPanel;
     import src.ConKUeror.UI.Panels.PlayerInteractionPanel;
     import src.ConKUeror.UI.Panels.PlayerPanel;
@@ -270,12 +271,15 @@
 
                         Territory[] memoryTerritory = buttonHandler.getMemoryList();
                         for (Territory t : memoryTerritory) {
-                            System.out.println("Hello World");
+                         
                             if (t != null) {
                                 System.out.println(t.getId());
+                                Animation animatedObject = new Animation();
+                                Thread thread = new Thread(animatedObject);
+                                thread.start();
+                        
                             }
 
-                            System.out.println("Bye World!");
                         }
 
                         jPanel.removeAll();
