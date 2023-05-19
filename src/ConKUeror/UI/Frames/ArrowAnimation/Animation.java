@@ -2,9 +2,14 @@ package src.ConKUeror.UI.Frames.ArrowAnimation;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
-public class Animation extends JPanel implements Runnable {
+import src.ConKUeror.UI.Frames.MapView;
+import src.ConKUeror.UI.HelpScreen.HelpScreen;
+
+public class Animation extends JPanel  {
   
     Arrow arrow = new CurvedArrow();
 
@@ -31,22 +36,6 @@ public class Animation extends JPanel implements Runnable {
     }
 
   
-    @Override
-    public void run() {
-                 Animation arrow = new Animation();
-
-        JFrame frame = new JFrame("Bevel Arrows");
-
-        frame.add(arrow, BorderLayout.CENTER);
-
-        frame.setSize(800, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        
-        // Create and start the arrow movement thread
-        ArrowMovementThread movementThread = new ArrowMovementThread(arrow);
-        movementThread.start();
-    }
 
 
 }

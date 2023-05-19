@@ -1,11 +1,14 @@
     package src.ConKUeror.UI.Frames;
 
-    import java.awt.BorderLayout;
+    import java.awt.BasicStroke;
+import java.awt.BorderLayout;
     import java.awt.Color;
     import java.awt.Dimension;
     import java.awt.Font;
     import java.awt.Graphics;
-    import java.awt.event.ActionEvent;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
     import java.awt.event.ActionListener;
     import java.awt.event.MouseAdapter;
     import java.awt.event.MouseEvent;
@@ -22,9 +25,12 @@
     import javax.swing.JLabel;
     import javax.swing.JOptionPane;
     import javax.swing.JPanel;
+import javax.swing.border.Border;
 
-    import src.ConKUeror.UI.Buttons.TerritoryButton;
+import src.ConKUeror.UI.Buttons.TerritoryButton;
 import src.ConKUeror.UI.Frames.ArrowAnimation.Animation;
+import src.ConKUeror.UI.Frames.ArrowAnimation.ArrowMovementThread;
+import src.ConKUeror.UI.Frames.ArrowAnimation.CurvedArrow;
 import src.ConKUeror.UI.HelpScreen.HelpScreen;
     import src.ConKUeror.UI.Panels.InfoPanel;
     import src.ConKUeror.UI.Panels.PlayerInteractionPanel;
@@ -43,14 +49,19 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
     import java.util.ArrayList;
     import java.util.List;
 
+   
 
-    public class MapView extends JFrame implements MapListener ,TerritoryButtonListener,RollDieListener{
+    public class MapView extends  JFrame implements MapListener ,TerritoryButtonListener,RollDieListener, Runnable {
 
+        public JPanel mapPanel;
         MapHandler mapHandler;
         ButtonHandler buttonHandler;
         StartHandler startHandler;
         GameHandler gameHandler;
         PlayerPanel playerPanel;
+
+
+        
         JPanel jPanel = new JPanel();
         JPanel jPanel2 =  new JPanel();
         JPanel jPanel3;
@@ -69,7 +80,6 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
 
 
         public BufferedImage image;
-        JPanel mapPanel;
         String armyNum =String.valueOf(0);
         Boolean disable = false;
         int disable_Num = 0;
@@ -174,6 +184,7 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         setSize((int) (1.20 * image.getWidth()), image.getHeight());
         mapPanel = new JPanel() {
             BufferedImage backgroundImage = image;
+            Animation arrow = new Animation();
 
             @Override
             public void paintComponent(Graphics g) {
@@ -228,9 +239,9 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
             playerPanel = new PlayerPanel(buttonHandler);
             mapPanel.add(playerPanel);
 
-            setLayout(new BorderLayout());
             add(mapPanel, BorderLayout.CENTER);
             add(infoPanel, BorderLayout.EAST);
+            
             setResizable(false);
 
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -246,6 +257,21 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
     }
 
 
+    
+    @Override
+    public void run() {
+        
+                 Animation arrow = new Animation();
+                 
+                add(arrow);
+              
+        // Create and start the arrow movement thread
+        ArrowMovementThread movementThread = new ArrowMovementThread(arrow);
+        movementThread.start();
+    }
+    
+
+
     public void createTerritoryButtons() {
 
         for(int i= 0 ; i<42 ; i++) {
@@ -257,6 +283,9 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
             button.setBounds(x, y, 40, 40);
             button.setPreferredSize(new Dimension(40, 40));
             territoryButtonsList.add(button);
+
+
+
             button.addMouseListener(new MouseAdapter() {
 
                 @Override
@@ -273,11 +302,14 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
                         for (Territory t : memoryTerritory) {
                          
                             if (t != null) {
+
+                                
                                 System.out.println(t.getId());
                                 Animation animatedObject = new Animation();
-                                Thread thread = new Thread(animatedObject);
-                                thread.start();
-                        
+                              
+
+                        Thread thread = new Thread(MapView.this);
+                        thread.start();
                             }
 
                         }
@@ -322,6 +354,9 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
                 }
 
             });
+
+
+            
             mapPanel.setLayout(null); // switch to null layout manager
             mapPanel.add(button);
 

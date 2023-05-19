@@ -4,10 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class HelpScreen extends JFrame {
+    public JFrame introductionFrame = new JFrame("Introduction Window");
 
     public HelpScreen() {
 
-        JFrame introductionFrame = new JFrame("Introduction Window");
 
         introductionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         introductionFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
