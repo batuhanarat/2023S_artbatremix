@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.sql.Array;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -37,6 +38,8 @@ import src.ConKUeror.domain.controller.RollDieListener;
 import src.ConKUeror.domain.controller.StartHandler;
 import src.ConKUeror.domain.controller.TerritoryButtonListener;
 import src.ConKUeror.domain.model.Board.Territory;
+import src.ConKUeror.domain.model.Data.GameState;
+import src.ConKUeror.domain.model.Player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +57,8 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
 
     JButton pauseAndResumeButton;
     JButton helpButton;
+     GameState gameState;
+    List<Player> playerList;
 
     JButton rollButton;
     JButton executeButton;
@@ -390,10 +395,17 @@ public void removeOnboardEvent(TerritoryButton button) {
 
 private class PauseButtonHandler implements ActionListener {
 
+    private GameState gameState;
+    private ArrayList playerList;
+
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        PauseScreen pauseScreen = new PauseScreen(frame);
+        this.gameState = new GameState(armyNum, armyNum);
+        this.playerList = new ArrayList<>();
+
+
+        PauseScreen pauseScreen = new PauseScreen(frame,gameState,playerList,gameHandler);
         pauseScreen.setVisible(true);
     }
 
