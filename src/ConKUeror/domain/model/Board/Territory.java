@@ -18,6 +18,8 @@ public class Territory {
     private Player owner;
     private Army army;
     private boolean isFree;
+    private int locationX;
+    private int locationY;
 
 
 

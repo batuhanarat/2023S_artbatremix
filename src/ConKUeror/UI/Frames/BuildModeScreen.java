@@ -37,8 +37,8 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
             this.buildHandler = buildHandler;
             initGUI();
             addBoardFrameAsListener();
-            confirmButton.addActionListener(new ConfirmButtonHandler());
-            startButton.addActionListener(new StartButtonHandler());
+             confirmButton.addActionListener(new ConfirmButtonHandler());
+             startButton.addActionListener(new StartButtonHandler());
             helpButton.addActionListener(new HelpButtonHandler());
 
     }
@@ -86,10 +86,11 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
             // TODO Auto-generated method stub
 
           Boolean canStart =BuildMode.getStartStatus();
+
           if(canStart) {
             dispose();
             buildHandler.initalizeBots(getBotNumberComboboxValue());
-            buildHandler.initializeGame();
+             buildHandler.initializeGame();
                   try {
                     MapView map = new MapView();
                 } catch (IOException e1) {

@@ -87,6 +87,7 @@ import src.ConKUeror.domain.model.Player.PlayerFactory;
     coordinates.add(new Coordinate(998, 501));
     coordinates.add(new Coordinate(1023, 602));
     coordinates.add(new Coordinate(947, 640));
+    
         //pause-resume
         coordinates.add(new Coordinate(10 , 19));
         //help

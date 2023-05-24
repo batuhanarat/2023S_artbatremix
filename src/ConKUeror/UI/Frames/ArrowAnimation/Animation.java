@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import src.ConKUeror.UI.Frames.MapView;
 import src.ConKUeror.UI.HelpScreen.HelpScreen;
 
 public class Animation extends JPanel  {
@@ -24,15 +23,17 @@ public class Animation extends JPanel  {
         int height = getHeight();
 
         g2d.setColor(Color.WHITE);
-        g2d.fillRect(0, 0, width, height);
 
        
 
         g2d.setStroke(new BasicStroke(20.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
         g2d.translate(0, 60);
-        arrow.draw(g2d);
+        //  ((Graphics2D) g).setStroke(new BasicStroke(20.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
+                //   g.translate(0, 60);
+                // arrow.draw(g2d);
+                g2d.translate(400, -260);
 
-        g2d.translate(400, -260);
+
     }
 
   

@@ -4,20 +4,37 @@ import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
 
+public class CurvedArrow extends JPanel implements Arrow {
+    private float centerX; // Variable to store the center x-coordinate
+    private float centerY; // Variable to store the center y-coordinate
+    private double angle;
 
-public class CurvedArrow implements Arrow {
-    // to draw a nice curved arrow, fill a V shape rather than stroking it with lines
-    private float x = 90.0f;
 
-    public void draw(Graphics2D g) {
-        // as we're filling rather than stroking, control point is at the apex,
+    @Override
+    public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+
+    
+
+
+
+
+
+    }
+
+
+
+    public void draw(Graphics2D g, float x, float y, float pathHeight,float pathWidth, float lineHeight,float lineWidth) {
+        centerX = x; // Set the center x-coordinate
+        centerY = y+20; // Set the center y-coordinate
 
         float arrowRatio = 0.4f;
-        float arrowLength = 80.0f;
+        float arrowLength = 60.0f; // Adjust the arrow length to make it smaller
+        float arrowWidth = arrowRatio * arrowLength; // Adjust the arrow width proportionally
 
         BasicStroke stroke = (BasicStroke) g.getStroke();
 
-        float endX = 350.0f;
+        float endX = centerX + 175.0f; // Adjust the x-coordinate of the end point of the arrow
 
         float veeX = endX - stroke.getLineWidth() * 0.5f / arrowRatio;
 
@@ -28,35 +45,50 @@ public class CurvedArrow implements Arrow {
 
         float waistX = endX - arrowLength * 0.5f;
         float waistY = arrowRatio * arrowLength * 0.5f * waisting;
-        float arrowWidth = arrowRatio * arrowLength;
 
-        path.moveTo(veeX - arrowLength, -arrowWidth);
-        path.quadTo(waistX, -waistY, endX, 0.0f);
-        path.quadTo(waistX, waistY, veeX - arrowLength, arrowWidth);
+        path.moveTo(veeX - arrowLength * pathHeight-pathWidth, centerY - arrowWidth * pathHeight);
+        path.quadTo(waistX-pathWidth, centerY - waistY, endX-pathWidth, centerY);
+        path.quadTo(waistX-pathWidth, centerY + waistY, veeX - arrowLength * pathHeight-pathWidth, centerY + arrowWidth * pathHeight);
 
         // end of arrow is pinched in
-        path.lineTo(veeX - arrowLength * 0.75f, 0.0f);
-        path.lineTo(veeX - arrowLength, -arrowWidth);
+        path.lineTo(veeX - arrowLength * 0.75f * pathHeight-pathWidth, centerY);
+        path.lineTo(veeX - arrowLength * pathHeight-pathWidth, centerY - arrowWidth * pathHeight);
 
-        g.setColor(Color.BLUE);
-        g.fill(path);
+        // Rotate the path by 90 degrees
+        Shape rotatedPath = rotateShape(path, this.angle);
+
+        
 
         // move stem back a bit
         g.setColor(Color.RED);
-        float xEnd = veeX - 20 - arrowLength * 0.5f;
-        if(x-xEnd == 0)
-        x = 90.0f;
-        Line2D line = new Line2D.Float(x, 0, xEnd, 0.0f);
-        
+        float xEnd = veeX - 20 - arrowLength * 0.5f * lineHeight;
+        Line2D line = new Line2D.Float(centerX, centerY, lineWidth, centerY);
 
-        g.draw(line);
+        // Rotate the line by 90 degrees
+        Shape rotatedLine = rotateShape(line, this.angle);
+
+        ((Graphics2D) g).setStroke(new BasicStroke(20.0f * lineHeight, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
+        g.draw(rotatedLine);
+     g.setColor(Color.BLUE);
+
+        g.fill(rotatedPath);
     }
 
     public void move() {
-        x += 1.0f; // Adjust the movement speed as needed
+        // Adjust the movement speed as needed
+        // This method is not relevant to the size of the arrow, so you can leave it as it is
+    
+    centerX+=10;
+    
     }
 
+    public Shape rotateShape(Shape shape, double degrees) {
+        rotateAngle(degrees);
+        AffineTransform transform = AffineTransform.getRotateInstance(Math.toRadians(degrees), centerX, centerY);
+        return transform.createTransformedShape(shape);
+    }
 
-    
-    
+    public void rotateAngle(double angle) {
+        this.angle = angle;
+    }
 }

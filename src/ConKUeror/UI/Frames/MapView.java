@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
     import java.awt.Font;
     import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
     import java.awt.event.ActionListener;
@@ -60,6 +61,8 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         GameHandler gameHandler;
         PlayerPanel playerPanel;
 
+        private int arrow_x;
+        private int arrow_y;
 
         
         JPanel jPanel = new JPanel();
@@ -174,9 +177,10 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
 
     }
 
+private float line_scale;
 
-
-
+private int territory_id = -1;
+private CurvedArrow arrow = new CurvedArrow();
 
     public void initGUI() throws IOException {
 
@@ -184,20 +188,84 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         setSize((int) (1.20 * image.getWidth()), image.getHeight());
         mapPanel = new JPanel() {
             BufferedImage backgroundImage = image;
-            Animation arrow = new Animation();
+            
 
-            @Override
-            public void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(backgroundImage, 0, 0, null); // draw the image
-            }
+         @Override
+public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    g.drawImage(backgroundImage, 0, 0, null); // draw the image
+
+    Graphics2D g2d = (Graphics2D) g;
+    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+    int width = getWidth();
+    int height = getHeight();
+   float path_width;
+   float path_height;
+   float line_height;
+   float line_width;
+
+ switch (territory_id) {
+    case 0:
+    path_height = 0.8f;
+    path_width = 50;
+    line_height = 0.5f;
+    line_width = arrow_x +86.28f;
+         arrow.rotateAngle(0);
+         arrow.draw((Graphics2D)g, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+     ArrowMovementThread thread = new ArrowMovementThread(arrow_x,arrow);
+     thread.start();
+        arrow.rotateAngle(30);
+        mapPanel.repaint();
+
+        // arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,50,0.5f,arrow_x+86.28f);
+        break;
+        
+        case 1:
+        arrow.rotateAngle(-10);
+        arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,-50,0.5f,arrow_x+196.28f);
+
+        arrow.rotateAngle(180);
+        arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,90,0.5f,arrow_x+56.28f);
+    
+        arrow.rotateAngle(45);
+        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
+        
+        arrow.rotateAngle(80);
+        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.5f,100,0.5f,arrow_x+50f);
+
+        break;
+
+        case 2: 
+        arrow.rotateAngle(35);
+        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
+       
+        arrow.rotateAngle(120);
+        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
+       
+        arrow.rotateAngle(140);
+        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,20,0.5f,arrow_x+146.28f);
+       
+        break;
+        default:
+
+
+ }
+        
+}
+
+
+
+
+
+   
+
         };
         mapPanel.setOpaque(false);
 
             //mapPanel.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
         mapPanel.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
         mapPanel.setLayout(null);
-
 
 
         PlayerInteractionPanel interactionPanel = new PlayerInteractionPanel(buttonHandler, gameHandler);
@@ -260,14 +328,22 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
     
     @Override
     public void run() {
+      
+// while (true) {
+    
+
+//     try {
+//         Thread.sleep(10); // Adjust the delay between movements as needed
+//     } catch (InterruptedException e) {
+//         e.printStackTrace();
+//     }
+
+// }        // Create and start the arrow movement thread
+        //  ArrowMovementThread movementThread = new ArrowMovementThread(arrow_x,this);
         
-                 Animation arrow = new Animation();
-                 
-                add(arrow);
-              
-        // Create and start the arrow movement thread
-        ArrowMovementThread movementThread = new ArrowMovementThread(arrow);
-        movementThread.start();
+     
+ 
+    
     }
     
 
@@ -279,82 +355,78 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
             int x = buttonHandler.getXFromList(i);
             int y = buttonHandler.getYFromList(i);
 
+           
+
             TerritoryButton button = new TerritoryButton(x,y,i);
             button.setBounds(x, y, 40, 40);
             button.setPreferredSize(new Dimension(40, 40));
             territoryButtonsList.add(button);
 
+            
 
 
             button.addMouseListener(new MouseAdapter() {
-
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if(e.getButton()== MouseEvent.BUTTON1) {
+                    
+                    if (e.getButton() == MouseEvent.BUTTON1) {
                         System.out.println("MOUSE CLICKED TO TERRITORY");
                         buttonHandler.matchButtonWithTerritory(button.getID());
                         buttonHandler.selectButton(button);
-
-
+            
                         buttonHandler.addToMemory(button.getID());
-
+            
                         Territory[] memoryTerritory = buttonHandler.getMemoryList();
                         for (Territory t : memoryTerritory) {
-                         
                             if (t != null) {
+                                System.out.println(t.getId());
+                                territory_id = t.getId();
+                                arrow_x= buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getX();
+                                arrow_y= buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getY();
+                                    
+
+
+
+
+
+
+
+
+
 
                                 
-                                System.out.println(t.getId());
-                                Animation animatedObject = new Animation();
-                              
-
-                        Thread thread = new Thread(MapView.this);
-                        thread.start();
+              
+                                mapPanel.repaint();
+                               
+                             
                             }
-
                         }
-
+            
                         jPanel.removeAll();
                         jPanel2.removeAll();
                         if (memoryTerritory.length == 1) {
-
                             Territory t1 = memoryTerritory[1];
                             displayTerritoryInfo(t1, jPanel);
-                        }
-                        else if (memoryTerritory.length == 2) {
+                        } else if (memoryTerritory.length == 2) {
                             Territory t1 = memoryTerritory[1];
                             displayTerritoryInfo(t1, jPanel);
                             Territory t2 = memoryTerritory[0];
                             displayTerritoryInfo(t2, jPanel2);
-
                         }
-
+            
                         jPanel.revalidate();
                         jPanel.repaint();
                         jPanel2.revalidate();
                         jPanel2.repaint();
-
-
-
-
-
-
-
-                    }
-                    else if (e.getButton() == MouseEvent.BUTTON3) {
-
-                        for (TerritoryButton b: buttonHistory) {
+                    } else if (e.getButton() == MouseEvent.BUTTON3) {
+                        for (TerritoryButton b : buttonHistory) {
                             b.resetColor();
                         }
                         buttonHistory.clear();
-
                     }
-
-
                 }
-
             });
-
+            
 
             
             mapPanel.setLayout(null); // switch to null layout manager
