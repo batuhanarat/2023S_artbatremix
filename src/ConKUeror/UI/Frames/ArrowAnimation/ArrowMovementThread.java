@@ -33,9 +33,9 @@ public class ArrowMovementThread extends Thread {
     public void run() {
         while (running) {
 
-            arrow_x+=10;
-      arrow.repaint();
-System.out.println("hi");
+//             arrow_x+=10;
+//       arrow.repaint();
+// System.out.println("hi");
             
 
 

@@ -63,8 +63,14 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
 
         private int arrow_x;
         private int arrow_y;
+        Graphics2D g2d;
+        float path_width;
+        float path_height;
+        float line_height;
+        float line_width;
 
-        
+        double angle = 0;
+
         JPanel jPanel = new JPanel();
         JPanel jPanel2 =  new JPanel();
         JPanel jPanel3;
@@ -195,15 +201,13 @@ public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(backgroundImage, 0, 0, null); // draw the image
 
-    Graphics2D g2d = (Graphics2D) g;
+    g2d = (Graphics2D) g;
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
     int width = getWidth();
     int height = getHeight();
-   float path_width;
-   float path_height;
-   float line_height;
-   float line_width;
+
+   
 
  switch (territory_id) {
     case 0:
@@ -211,12 +215,13 @@ public void paintComponent(Graphics g) {
     path_width = 50;
     line_height = 0.5f;
     line_width = arrow_x +86.28f;
-         arrow.rotateAngle(0);
-         arrow.draw((Graphics2D)g, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
-     ArrowMovementThread thread = new ArrowMovementThread(arrow_x,arrow);
-     thread.start();
-        arrow.rotateAngle(30);
-        mapPanel.repaint();
+
+         arrow.rotateAngle(angle);
+    //  ArrowMovementThread thread = new ArrowMovementThread(arrow_x,arrow);
+    //  thread.start();
+        // arrow.rotateAngle(angle);
+        arrow.draw((Graphics2D)g, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+
 
         // arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,50,0.5f,arrow_x+86.28f);
         break;
@@ -253,8 +258,6 @@ public void paintComponent(Graphics g) {
  }
         
 }
-
-
 
 
 
@@ -325,6 +328,20 @@ public void paintComponent(Graphics g) {
     }
 
 
+    Thread animationThread = new Thread(() -> {
+        while (true) {
+            angle+=10;
+            arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+
+            
+            mapPanel.repaint();
+            try {
+                Thread.sleep(60);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    });
     
     @Override
     public void run() {
@@ -383,6 +400,14 @@ public void paintComponent(Graphics g) {
                                 territory_id = t.getId();
                                 arrow_x= buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getX();
                                 arrow_y= buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getY();
+                              
+                                try {
+                                    animationThread.start();
+
+                                } catch (Exception b) {
+                                    // TODO: handle exception
+                                }
+                              
                                     
 
 
@@ -452,7 +477,7 @@ public void paintComponent(Graphics g) {
             rollButton.setBounds(buttonHandler.getXFromList(44), buttonHandler.getYFromList(44), 80, 80);
             executeButton = new JButton("Remove");
             executeButton.setBounds(buttonHandler.getXFromList(45), buttonHandler.getYFromList(45), 80, 80);
-            nextButton = new JButton("Next");
+            nextButton = new JButton("Next"); 
             nextButton.setBounds(buttonHandler.getXFromList(46), buttonHandler.getYFromList(46), 80, 80);
             mapPanel.setLayout(null); // switch to null layout manager
     */
@@ -472,7 +497,7 @@ public void paintComponent(Graphics g) {
         // TODO Auto-generated method stub
 
         System.out.println("Remove executed");
-        button.setVisible(false); // set the visibility of the button to false
+        button.setVisible(false); // set the visibility of the button xto false
         revalidate(); // revalidate the frame to update the layout
         repaint();}
 

@@ -14,7 +14,7 @@ public class CurvedArrow extends JPanel implements Arrow {
     public void paintComponent(Graphics g) {
     super.paintComponent(g);
 
-    
+
 
 
 
@@ -74,13 +74,13 @@ public class CurvedArrow extends JPanel implements Arrow {
         g.fill(rotatedPath);
     }
 
-    public void move() {
-        // Adjust the movement speed as needed
-        // This method is not relevant to the size of the arrow, so you can leave it as it is
+     public void move() {
+//         // Adjust the movement speed as needed
+//         // This method is not relevant to the size of the arrow, so you can leave it as it is
     
-    centerX+=10;
-    
-    }
+// angle+=10;    
+// System.out.println(angle);
+     }
 
     public Shape rotateShape(Shape shape, double degrees) {
         rotateAngle(degrees);
