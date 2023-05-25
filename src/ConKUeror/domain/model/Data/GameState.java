@@ -1,38 +1,49 @@
 package src.ConKUeror.domain.model.Data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GameState {
-    private String currentTurn;
+    private String turn;
+    private Map<String, Integer> territoryArmies;
+    private int currentTurn;
     private String mapState;
+    public GameState(String turn,String mapState) {
+        this.turn = turn;
+        this.mapState = mapState;
+    }
 
+    public String getTurn() {
+        return turn;
+    }
+
+    public Map<String, Integer> getTerritoryArmies() {
+        return territoryArmies;
+    }
+    public int getCurrentTurn() {
+        return currentTurn;
+    }
     
-    public GameState(String currentTurn, String mapState) {
-        this.currentTurn = currentTurn;
-        this.mapState = mapState;
+    public void setCurrentTurn(int turn) {
+        currentTurn = turn;
     }
 
-    public String getCurrentTurn() {
-        return this.currentTurn;
-    }
-
-    public void setCurrentTurn(String currentTurn) {
-        this.currentTurn = currentTurn;
-    }
-
-    public String getMapState() {
-        return this.mapState;
-    }
-
-    public void setMapState(String mapState) {
-        this.mapState = mapState;
+    public void setTerritoryArmies(Map<String, Integer> territoryArmies) {
+        this.territoryArmies = territoryArmies;
     }
 
     @Override
     public String toString() {
-        return currentTurn + "," + mapState;
+        return turn + "\n" + mapState; // Only include turn and mapState
     }
-
-    public static GameState fromString(String str) {
-        String[] parts = str.split(",");
-        return new GameState(parts[0], parts[1]);
+    
+    public static GameState fromString(String data) {
+        String[] lines = data.split("\n");
+        if (lines.length < 2) {
+            return null;
+        }
+        String turn = lines[0];
+        String mapState = lines[1]; // Add the map state from the data
+        return new GameState(turn, mapState);
     } 
 }

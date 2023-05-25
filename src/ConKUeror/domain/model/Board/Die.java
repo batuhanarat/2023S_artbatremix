@@ -34,7 +34,7 @@ public class Die {
 
     public void rollDie()
     {
-        faceValue =  random.nextInt(1,7);
+        faceValue =  random.nextInt(7);
     }
 
     public int getFaceValue() {
@@ -44,7 +44,7 @@ public class Die {
 
 
    public void customRollDie(int i) {
-        customValue = random.nextInt(0,i);
+        customValue = random.nextInt(i);
    }
 
    public int getCustomValue(int i) {

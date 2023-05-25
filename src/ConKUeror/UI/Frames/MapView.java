@@ -39,7 +39,9 @@ import src.ConKUeror.domain.controller.StartHandler;
 import src.ConKUeror.domain.controller.TerritoryButtonListener;
 import src.ConKUeror.domain.model.Board.Territory;
 import src.ConKUeror.domain.model.Data.GameState;
+import src.ConKUeror.domain.model.Modes.GameLogic;
 import src.ConKUeror.domain.model.Player.Player;
+import src.ConKUeror.domain.model.Player.PlayerExpert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -251,7 +253,7 @@ public void createTerritoryButtons() {
                     System.out.println("MOUSE CLICKED TO TERRITORY");
                     buttonHandler.matchButtonWithTerritory(button.getID());
                     buttonHandler.selectButton(button);
-
+ 
 
                     buttonHandler.addToMemory(button.getID());
 
@@ -388,6 +390,21 @@ public void removeOnboardEvent(TerritoryButton button) {
 
         mapPanel.revalidate();
         mapPanel.repaint();
+    }   
+    public void updateTerritoryArmies(GameState gameState) {
+        Map<String, Integer> territoryArmies = gameState.getTerritoryArmies();
+    
+        for (TerritoryButton button : territoryButtonsList) {
+            int territoryId = button.getID();
+    
+            if (territoryArmies.containsKey(territoryId)) {
+                int armyCount = territoryArmies.get(territoryId);
+                button.setArmyValue(armyCount);
+            }
+        }
+    
+        revalidate();
+        repaint();
     }
 
 
@@ -396,13 +413,15 @@ public void removeOnboardEvent(TerritoryButton button) {
 private class PauseButtonHandler implements ActionListener {
 
     private GameState gameState;
-    private ArrayList playerList;
+    private List<Player> playerList;
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        this.gameState = new GameState(armyNum, armyNum);
-        this.playerList = new ArrayList<>();
+       // String turn = PlayerExpert.getPlayerInTurn().getName();
+        this.gameState = new GameState("turn", "aa");
+        this.playerList = PlayerExpert.getPlayersList();
 
 
         PauseScreen pauseScreen = new PauseScreen(frame,gameState,playerList,gameHandler);

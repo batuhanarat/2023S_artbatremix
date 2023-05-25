@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
-
-
-
-import src.ConKUeror.domain.model.Board.Card;
 import src.ConKUeror.domain.model.Board.ArmyCard.ArmyType;
 import src.ConKUeror.domain.model.Army.Army;
 import src.ConKUeror.domain.model.Board.*;;;;
@@ -47,6 +42,29 @@ private List<ChanceCard> chanceCards;
 
     public String getArmyCardstoString() {
         return armyCards.toString();
+    }
+    public int getArtilleryCount() {
+        return artilleryCount;
+    }
+
+    public void setArtilleryCount(int artilleryCount) {
+        this.artilleryCount = artilleryCount;
+    }
+
+    public int getInfantryCount() {
+        return infantryCount;
+    }
+
+    public void setInfantryCount(int infantryCount) {
+        this.infantryCount = infantryCount;
+    }
+
+    public int getCavalryCount() {
+        return cavalryCount;
+    }
+
+    public void setCavalryCount(int cavalryCount) {
+        this.cavalryCount = cavalryCount;
     }
     public void countByTypes() {
         // Check if the player has a valid set of 3 cards to trade
@@ -388,6 +406,7 @@ public void deleteCards(Card c[]) {
 
     }
 }
-
-
+public void setOwnedTerritories(List<Territory> territories) {
+    ownedTerritories = new ArrayList<>(territories);
+}
 }

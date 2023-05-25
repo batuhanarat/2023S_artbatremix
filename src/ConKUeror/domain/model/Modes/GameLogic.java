@@ -77,8 +77,11 @@ public class GameLogic {
       orderedPlayerList =orderList;
       PlayerExpert.setPlayersList(orderedPlayerList);
 
+    
     }
-
+    public Player getPlayerInTurn(){
+      return this.playerInTurn;
+    }
 
     public void passToNextPlayer(Player p1) {
 

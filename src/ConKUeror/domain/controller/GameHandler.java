@@ -11,6 +11,7 @@ import src.ConKUeror.domain.model.Player.PlayerExpert;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -31,28 +32,25 @@ public class GameHandler {
         return instance;
     }
     
-    public void saveGame(GameData gameData, String filename) throws FileNotFoundException {
-        try (PrintWriter out = new PrintWriter(filename)) {
-            out.println(gameData.getGameState());
-            for (PlayerData playerData : gameData.getPlayerDataList()) {
-                out.println(playerData);
-            }
-        }
+    public void saveGame(GameData gameData, String filename, GameDataAdapter adapter) throws IOException {
+        adapter.saveGameData(gameData, filename);
     }
-     
 
-    public GameData loadGame(String filename, List<Player> playerList) throws FileNotFoundException {
-        try (Scanner scanner = new Scanner(new File(filename))) {
-            GameState gameState = GameState.fromString(scanner.nextLine());
-    
-            List<PlayerData> playerData = new ArrayList<>();
-            while (scanner.hasNextLine()) {
-                playerData.add(PlayerData.fromString(scanner.nextLine(), playerList));
-            }
-            return new GameData(gameState, playerData);
-        }
+    public GameData loadGame(String filename, List<Player> playerList, GameDataAdapter adapter) throws FileNotFoundException {
+        return adapter.loadGameData(filename, playerList);
     } 
+    
+     
+    public void updateGameState(GameState loadedGameState) {
+        // Here, add code to update the game state using loadedGameState
+    }
 
+    public void updatePlayerDataList(List<PlayerData> loadedPlayerDataList) {
+         //code to update the player list using loadedPlayerDataList
+        
+        
+    
+    }
 
     public void registerPlayerPanelAsListener(PlayerExpertListener listener) {
         PlayerExpert.addPlayerPanelAsListener(listener);
