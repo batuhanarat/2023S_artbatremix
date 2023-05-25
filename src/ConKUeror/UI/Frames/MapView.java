@@ -206,56 +206,102 @@ public void paintComponent(Graphics g) {
 
     int width = getWidth();
     int height = getHeight();
-
-   
-
- switch (territory_id) {
-    case 0:
     path_height = 0.8f;
-    path_width = 50;
+    path_width = 60;
     line_height = 0.5f;
     line_width = arrow_x +86.28f;
+   
 
-         arrow.rotateAngle(angle);
-    //  ArrowMovementThread thread = new ArrowMovementThread(arrow_x,arrow);
-    //  thread.start();
-        // arrow.rotateAngle(angle);
-        arrow.draw((Graphics2D)g, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+    for(int i=0; i<43;i++) {
+
+        if(i== territory_id) {
+            arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+
+        }
+    }
+
+//  switch (territory_id) {
+//     case 0:
+//     path_height = 0.8f;
+//     path_width = 60;
+//     line_height = 0.5f;
+//     line_width = arrow_x +86.28f;
+//     arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+
+//         //  arrow.rotateAngle(angle);
+//     //  ArrowMovementThread thread = new ArrowMovementThread(arrow_x,arrow);
+//     //  thread.start();
+//         // arrow.rotateAngle(angle);
+//         // arrow.draw((Graphics2D)g, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
 
 
-        // arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,50,0.5f,arrow_x+86.28f);
-        break;
+//         // arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,50,0.5f,arrow_x+86.28f);
+//         break;
         
-        case 1:
-        arrow.rotateAngle(-10);
-        arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,-50,0.5f,arrow_x+196.28f);
+//         case 1:
+//         path_height = 0.8f;
+//     path_width = 60;
+//     line_height = 0.5f;
+//     line_width = arrow_x +86.28f;
+//         arrow.draw((Graphics2D) g, arrow_x, arrow_y,path_height, path_width, line_height, line_width);
 
-        arrow.rotateAngle(180);
-        arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,90,0.5f,arrow_x+56.28f);
+//         // arrow.rotateAngle(180);
+//         // arrow.draw((Graphics2D) g, arrow_x, arrow_y,0.8f,90,0.5f,arrow_x+56.28f);
     
-        arrow.rotateAngle(45);
-        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
+//         // arrow.rotateAngle(45);
+//         // arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
         
-        arrow.rotateAngle(80);
-        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.5f,100,0.5f,arrow_x+50f);
+//         // arrow.rotateAngle(80);
+//         // arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.5f,100,0.5f,arrow_x+50f);
 
-        break;
+//         break;
 
-        case 2: 
-        arrow.rotateAngle(35);
-        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
+//         case 2: 
+
+//         path_height = 0.8f;
+//         path_width = 60;
+//         line_height = 0.5f;
+//         line_width = arrow_x +86.28f;
+//             arrow.draw((Graphics2D) g, arrow_x, arrow_y,path_height, path_width, line_height, line_width);
+//             break;
+
+
+//         // arrow.rotateAngle(35);
+//         // arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
        
-        arrow.rotateAngle(120);
-        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
+//         // arrow.rotateAngle(120);
+//         // arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,50,0.5f,arrow_x+106.28f);
        
-        arrow.rotateAngle(140);
-        arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,20,0.5f,arrow_x+146.28f);
+//         // arrow.rotateAngle(140);
+//         // arrow.draw((Graphics2D) g, arrow_x+10, arrow_y,0.8f,20,0.5f,arrow_x+146.28f);
        
-        break;
-        default:
+
+//         case 3: 
+
+//         path_height = 0.8f;
+//         path_width = 60;
+//         line_height = 0.5f;
+//         line_width = arrow_x +86.28f;
+//             arrow.draw((Graphics2D) g, arrow_x, arrow_y,path_height, path_width, line_height, line_width);
+//             break;
 
 
- }
+//             case 4: 
+
+//             path_height = 0.8f;
+//             path_width = 60;
+//             line_height = 0.5f;
+//             line_width = arrow_x +86.28f;
+//                 arrow.draw((Graphics2D) g, arrow_x, arrow_y,path_height, path_width, line_height, line_width);
+//                 break;
+
+
+
+
+//         default:
+
+
+//  }
         
 }
 
@@ -331,7 +377,8 @@ public void paintComponent(Graphics g) {
     Thread animationThread = new Thread(() -> {
         while (true) {
             angle+=10;
-            arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+            arrow.rotateAngle(angle);
+            
 
             
             mapPanel.repaint();

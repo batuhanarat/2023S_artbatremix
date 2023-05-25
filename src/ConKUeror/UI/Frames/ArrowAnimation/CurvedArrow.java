@@ -25,7 +25,7 @@ public class CurvedArrow extends JPanel implements Arrow {
 
 
     public void draw(Graphics2D g, float x, float y, float pathHeight,float pathWidth, float lineHeight,float lineWidth) {
-        centerX = x; // Set the center x-coordinate
+        centerX = x+10; // Set the center x-coordinate
         centerY = y+20; // Set the center y-coordinate
 
         float arrowRatio = 0.4f;
