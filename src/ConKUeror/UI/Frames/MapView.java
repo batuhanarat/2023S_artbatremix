@@ -68,6 +68,10 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         float path_height;
         float line_height;
         float line_width;
+        float path_width_end;
+        float path_height_end;
+        float line_height_end;
+        float line_width_end;
 
         double angle = 0;
 
@@ -87,6 +91,9 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         Boolean selected = false;
         List<TerritoryButton> buttonHistory = new ArrayList<TerritoryButton>();
 
+        List<Integer> territory_X_list = new ArrayList<Integer>();
+        
+        List<Integer> territory_Y_list = new ArrayList<Integer>();
 
         public BufferedImage image;
         String armyNum =String.valueOf(0);
@@ -192,6 +199,10 @@ private CurvedArrow arrow = new CurvedArrow();
 
         image = ImageIO.read(getClass().getResourceAsStream("/src/images/Map.png"));
         setSize((int) (1.20 * image.getWidth()), image.getHeight());
+      
+    
+
+      
         mapPanel = new JPanel() {
             BufferedImage backgroundImage = image;
             
@@ -206,17 +217,79 @@ public void paintComponent(Graphics g) {
 
     int width = getWidth();
     int height = getHeight();
-    path_height = 0.8f;
-    path_width = 60;
-    line_height = 0.5f;
-    line_width = arrow_x +86.28f;
-   
+ 
+    
 
+    
     for(int i=0; i<43;i++) {
 
-        if(i== territory_id) {
-            arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
 
+
+        if(i== territory_id) {
+
+
+
+
+            switch (territory_id) {
+                case 0:
+                int arrow_x_0 = arrow_x;
+                int arrow_y_0 = arrow_y;
+                int arrow_x_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getX();
+                int arrow_y_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getY();
+              
+                line_height = 0.5f;
+                path_height = 0.8f;
+            System.out.println("LineWidth: " + line_width_end);
+
+                
+                // path_height_end = path_height;
+                // line_height_end = line_height;
+                // path_height_end = 0.8f;
+                // path_width_end = 60;
+                // line_height_end = 0.5f;
+                // line_width_end = arrow_x +86.28f;
+
+                double angle_1 = (Math.abs(arrow_y_1 - arrow_y_0)/Math.abs(arrow_x_1-arrow_x_0));
+                arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height, path_width_end, line_height, line_width_end, angle_1);
+                
+                int arrow_x_5 = buttonHandler.getBuildMode().getCoordinateList().get(5).getX();
+                int arrow_y_5= buttonHandler.getBuildMode().getCoordinateList().get(5).getY();
+           
+
+               double angle_5 = (double)(arrow_y_5 -arrow_y_0)/(double) (arrow_x_5- arrow_x_0); 
+
+                double degree_5 = Math.toDegrees(Math.atan(angle_5));
+
+                
+
+                
+               
+                arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height, path_width_end, line_height, line_width_end, degree_5);
+
+
+
+
+                // arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+                
+
+                    break;
+
+
+
+
+
+
+                 case 1:
+                
+                
+                 break;
+                default:
+                    break;
+            }
+           
+            // arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+           System.out.println("Territory: "+ territory_id +"\n X Coordinate: " + arrow_x + "\nY Coordinate: " + arrow_y);        
+        
         }
     }
 
@@ -373,22 +446,37 @@ public void paintComponent(Graphics g) {
 
     }
 
+    
 
-    Thread animationThread = new Thread(() -> {
+
+     Thread animationThread = new Thread(() -> {
         while (true) {
-            angle+=10;
-            arrow.rotateAngle(angle);
+path_width_end+=2;
+line_width_end-=2;
+
+if(path_width_end>108)
+path_width_end = path_width;
+if(line_width_end<106)
+line_width_end = line_width;
+// if(line_width_end>68)
+// line_width_end = line_width;
+System.out.println("Pathwidth: " + path_width);
+
+
+
+
+
             
 
             
             mapPanel.repaint();
             try {
                 Thread.sleep(60);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+             } catch (InterruptedException e) {
+                 e.printStackTrace();
             }
         }
-    });
+     });
     
     @Override
     public void run() {
@@ -447,13 +535,18 @@ public void paintComponent(Graphics g) {
                                 territory_id = t.getId();
                                 arrow_x= buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getX();
                                 arrow_y= buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getY();
-                              
+                              line_width = arrow_x+86.5f;
+                                 
+                            path_width = 60;
+
+                            path_width_end = path_width;
+                            line_width_end =  line_width;
                                 try {
                                     animationThread.start();
 
-                                } catch (Exception b) {
-                                    // TODO: handle exception
-                                }
+                                 } catch (Exception b) {
+                                     // TODO: handle exception
+                                 }
                               
                                     
 

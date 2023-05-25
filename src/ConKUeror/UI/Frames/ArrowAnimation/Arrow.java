@@ -6,5 +6,5 @@ import java.awt.Image;
 interface Arrow {
         void move();
         void rotateAngle(double angle);
-        void draw(Graphics2D g, float x, float y, float pathHeight, float pathWidth,float lineHeight,float lineWidth);
+        void draw(Graphics2D g, float x, float y, float pathHeight, float pathWidth,float lineHeight,float lineWidth,double angle);
 }

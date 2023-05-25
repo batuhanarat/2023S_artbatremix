@@ -24,10 +24,10 @@ public class CurvedArrow extends JPanel implements Arrow {
 
 
 
-    public void draw(Graphics2D g, float x, float y, float pathHeight,float pathWidth, float lineHeight,float lineWidth) {
+    public void draw(Graphics2D g, float x, float y, float pathHeight,float pathWidth, float lineHeight,float lineWidth,double angle) {
         centerX = x+10; // Set the center x-coordinate
         centerY = y+20; // Set the center y-coordinate
-
+        this.angle = angle;
         float arrowRatio = 0.4f;
         float arrowLength = 60.0f; // Adjust the arrow length to make it smaller
         float arrowWidth = arrowRatio * arrowLength; // Adjust the arrow width proportionally
@@ -89,6 +89,6 @@ public class CurvedArrow extends JPanel implements Arrow {
     }
 
     public void rotateAngle(double angle) {
-        this.angle = angle;
+        
     }
 }
