@@ -46,13 +46,13 @@ public class CurvedArrow extends JPanel implements Arrow {
         float waistX = endX - arrowLength * 0.5f;
         float waistY = arrowRatio * arrowLength * 0.5f * waisting;
 
-        path.moveTo(veeX - arrowLength * pathHeight-pathWidth, centerY - arrowWidth * pathHeight);
-        path.quadTo(waistX-pathWidth, centerY - waistY, endX-pathWidth, centerY);
-        path.quadTo(waistX-pathWidth, centerY + waistY, veeX - arrowLength * pathHeight-pathWidth, centerY + arrowWidth * pathHeight);
+        // path.moveTo(veeX - arrowLength * pathHeight-pathWidth, centerY - arrowWidth * pathHeight);
+        // path.quadTo(waistX-pathWidth, centerY - waistY, endX-pathWidth, centerY);
+        // path.quadTo(waistX-pathWidth, centerY + waistY, veeX - arrowLength * pathHeight-pathWidth, centerY + arrowWidth * pathHeight);
 
-        // end of arrow is pinched in
-        path.lineTo(veeX - arrowLength * 0.75f * pathHeight-pathWidth, centerY);
-        path.lineTo(veeX - arrowLength * pathHeight-pathWidth, centerY - arrowWidth * pathHeight);
+        // // end of arrow is pinched in
+        // path.lineTo(veeX - arrowLength * 0.75f * pathHeight-pathWidth, centerY);
+        // path.lineTo(veeX - arrowLength * pathHeight-pathWidth, centerY - arrowWidth * pathHeight);
 
         // Rotate the path by 90 degrees
         Shape rotatedPath = rotateShape(path, this.angle);
@@ -90,5 +90,6 @@ public class CurvedArrow extends JPanel implements Arrow {
 
     public void rotateAngle(double angle) {
         
+
     }
 }

@@ -18,7 +18,8 @@ import java.awt.event.ActionEvent;
     import java.util.Map;
 
     import javax.imageio.ImageIO;
-    import javax.sound.midi.MidiDevice.Info;
+import javax.lang.model.util.ElementScanner14;
+import javax.sound.midi.MidiDevice.Info;
     import javax.swing.Box;
     import javax.swing.BoxLayout;
     import javax.swing.JButton;
@@ -61,8 +62,8 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         GameHandler gameHandler;
         PlayerPanel playerPanel;
 
-        private int arrow_x;
-        private int arrow_y;
+        private float arrow_x;
+        private float arrow_y;
         Graphics2D g2d;
         float path_width;
         float path_height;
@@ -72,6 +73,7 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         float path_height_end;
         float line_height_end;
         float line_width_end;
+        double line_width_1_2;
 
         double angle = 0;
 
@@ -91,8 +93,8 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         Boolean selected = false;
         List<TerritoryButton> buttonHistory = new ArrayList<TerritoryButton>();
 
-        List<Integer> territory_X_list = new ArrayList<Integer>();
-        
+        Integer[][] line_width_ends = new Integer[43][43];
+
         List<Integer> territory_Y_list = new ArrayList<Integer>();
 
         public BufferedImage image;
@@ -228,19 +230,18 @@ public void paintComponent(Graphics g) {
         if(i== territory_id) {
 
 
+            line_height = 0.5f;
+            path_height = 0.8f;
+
 
 
             switch (territory_id) {
                 case 0:
-                int arrow_x_0 = arrow_x;
-                int arrow_y_0 = arrow_y;
-                int arrow_x_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getX();
-                int arrow_y_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getY();
+                float arrow_x_0 = arrow_x;
+                float arrow_y_0 = arrow_y;
+                float arrow_x_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getX();
+                float arrow_y_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getY();
               
-                line_height = 0.5f;
-                path_height = 0.8f;
-            System.out.println("LineWidth: " + line_width_end);
-
                 
                 // path_height_end = path_height;
                 // line_height_end = line_height;
@@ -250,11 +251,15 @@ public void paintComponent(Graphics g) {
                 // line_width_end = arrow_x +86.28f;
 
                 double angle_1 = (Math.abs(arrow_y_1 - arrow_y_0)/Math.abs(arrow_x_1-arrow_x_0));
-                arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height, path_width_end, line_height, line_width_end, angle_1);
+                arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height,path_width, line_height, arrow_x_0+line_width_ends[0][1], angle_1);
+                System.out.println("Path_width: " + path_width_end);
+                System.out.println("Line_width: " + line_width_end+ "\n");
+
                 
                 int arrow_x_5 = buttonHandler.getBuildMode().getCoordinateList().get(5).getX();
                 int arrow_y_5= buttonHandler.getBuildMode().getCoordinateList().get(5).getY();
            
+              
 
                double angle_5 = (double)(arrow_y_5 -arrow_y_0)/(double) (arrow_x_5- arrow_x_0); 
 
@@ -264,8 +269,7 @@ public void paintComponent(Graphics g) {
 
                 
                
-                arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height, path_width_end, line_height, line_width_end, degree_5);
-
+                arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height, path_width,line_height, arrow_x_0+line_width_ends[0][5], degree_5);
 
 
 
@@ -281,8 +285,130 @@ public void paintComponent(Graphics g) {
 
                  case 1:
                 
+                  arrow_x_1 = arrow_x;
+                  arrow_y_1 = arrow_y;
+                  arrow_x_0= buttonHandler.getBuildMode().getCoordinateList().get(0).getX();
+                  arrow_y_0= buttonHandler.getBuildMode().getCoordinateList().get(0).getY();
+
+
+                  double angle_0 = (double) (arrow_y_1 - arrow_y_0)/(arrow_x_1-arrow_x_0);
+                  System.out.println("Angle: " +angle_0);
+                  double degree_0 =  Math.toDegrees(Math.atan(angle_0));
+
+
+                  double arrow_y1_y0 = (arrow_y_1-arrow_y_0);
+                      double arrow_x1_x0 = (arrow_x_1-arrow_x_0);
+
+                      double arrow_y1_y0_square = arrow_y1_y0*arrow_y1_y0;
+                      double arrow_x1_x0_square = arrow_x1_x0*arrow_x1_x0;
+
+                    //  float line_width_0 = (float) Math.sqrt(arrow_x1_x0_square+arrow_y1_y0_square);
+
+                    //  if(line_width_0<line_width_end)
+                    //  line_width_end = 0;
+
+        
+
+                  System.out.println("Degree: " +degree_0);
+                  
+                  
+                  if(degree_0<0)
+                  degree_0 = 180 +degree_0;
+
+
+                  System.out.println("Path_width: " + path_width_end);
+                  System.out.println("Line_width: " + line_width_end+ "\n");
+                     arrow.draw(g2d, arrow_x_1, arrow_y_1, path_height,path_width-arrow_x_0, line_height, line_width_end+arrow_x_1,degree_0);
+
+
+
+                     arrow_x_5= buttonHandler.getBuildMode().getCoordinateList().get(5).getX();
+                     arrow_y_5= buttonHandler.getBuildMode().getCoordinateList().get(5).getY();
+                      angle_5 = (double) (arrow_y_1 - arrow_y_5)/(arrow_x_1-arrow_x_5);
+                      degree_5 = Math.toDegrees(Math.atan(angle_5));
+                      if(degree_5<0)
+                      degree_5 = 180 +degree_5;
+
+
+
+
+
+
+
+
+                      
+                      arrow.draw(g2d, arrow_x_1, arrow_y_1, path_height,path_width-arrow_x_0, line_height, line_width_end+arrow_x_1,degree_5);
+
+
+
+
+
+
+
+
+    
+                      double arrow_x_2= buttonHandler.getBuildMode().getCoordinateList().get(2).getX();
+                      double arrow_y_2= buttonHandler.getBuildMode().getCoordinateList().get(2).getY();
+                      
+                      double arrow_y1_y2 = (arrow_y_1-arrow_y_2);
+                      double arrow_x1_x2 = (arrow_x_1-arrow_x_2);
+
+                      System.out.println("Arrow_y1_y2: " +arrow_y1_y2 );
+                      System.out.println("Arrow_x1_x2: "+ arrow_x1_x2 );
+
+                    double angle_2 = (double) Math.abs(arrow_y_1 - arrow_y_2)/Math.abs(arrow_x_1-arrow_x_2);
+
+                    
+                     double degree_2 = Math.toDegrees(Math.atan(angle_2));
+                    System.out.println("Angle_2: "+ angle_2);
+                    System.out.println("Degree_2: "+ degree_2);
+                        
+                    double arrow_y1_y2_square = arrow_y1_y2*arrow_y1_y2;
+                    double arrow_x1_x2_square = arrow_x1_x2*arrow_x1_x2;
+
+            float line_width_2 = (float) Math.sqrt(arrow_x1_x2_square+arrow_y1_y2_square);
+
+
+            if(line_width_2<line_width_end)
+                     line_width_end = 0;
+
+
+
+
+                     if(arrow_y1_y2>0 && arrow_x1_x2<0)
+                     degree_2 = 360-degree_2;
+                     else if(arrow_y1_y2<0 && arrow_x1_x2<0)
+                     degree_2 = 270 -degree_2;
+                     else if(arrow_y1_y2<0 && arrow_x1_x2>0)
+                     degree_2 = 360 - degree_2;
+                     
+
+                     //  line_width =(float) (Math.sqrt(arrow_y1_y2*arrow_y1_y2 + arrow_x1_x2*arrow_x1_x2));
+                      
+                    
+                      arrow.draw(g2d, arrow_x_1, arrow_y_1, path_height,path_width-arrow_x_0, line_height, line_width_end+arrow_x_1,degree_2);
+
+    
+
+                    //  arrow.draw(g2d, arrow_x_1, arrow_y_1, path_height,path_width-arrow_x_0, line_height, line_width_end+arrow_x_1,270);
+
+
+
+
                 
                  break;
+
+
+                 case 2:
+
+
+
+
+                 break;
+
+
+
+
                 default:
                     break;
             }
@@ -451,16 +577,36 @@ public void paintComponent(Graphics g) {
 
      Thread animationThread = new Thread(() -> {
         while (true) {
-path_width_end+=2;
-line_width_end-=2;
 
-if(path_width_end>108)
-path_width_end = path_width;
-if(line_width_end<106)
-line_width_end = line_width;
+            for (int i=0;i<43;i++){
+
+                for(int j =0;j<43;j++) {
+
+                    if(i == j) break;
+
+                if(territory_id == i)
+            line_width_ends[i][j] +=2;
+
+            
+if(line_width_ends[i][j]>line_width)
+line_width_ends[i][j] = 0;
+
+            }
+
+        }
+            
+
+System.out.println("LineWidth: " + line_width_end);
+
+
+
+
+
+
 // if(line_width_end>68)
 // line_width_end = line_width;
-System.out.println("Pathwidth: " + path_width);
+// System.out.println("Pathwidth: " + path_width);
+// System.out.println("Pathwidth: " + line_width);
 
 
 
@@ -484,11 +630,11 @@ System.out.println("Pathwidth: " + path_width);
 // while (true) {
     
 
-//     try {
-//         Thread.sleep(10); // Adjust the delay between movements as needed
-//     } catch (InterruptedException e) {
-//         e.printStackTrace();
-//     }
+    // try {
+    //     Thread.sleep(10); // Adjust the delay between movements as needed
+    // } catch (InterruptedException e) {
+    //      e.printStackTrace();
+    //  }
 
 // }        // Create and start the arrow movement thread
         //  ArrowMovementThread movementThread = new ArrowMovementThread(arrow_x,this);
@@ -502,7 +648,11 @@ System.out.println("Pathwidth: " + path_width);
 
     public void createTerritoryButtons() {
 
+      
         for(int i= 0 ; i<42 ; i++) {
+
+            line_width_ends[i][i] = 0;
+        
 
             int x = buttonHandler.getXFromList(i);
             int y = buttonHandler.getYFromList(i);
@@ -535,18 +685,19 @@ System.out.println("Pathwidth: " + path_width);
                                 territory_id = t.getId();
                                 arrow_x= buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getX();
                                 arrow_y= buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getY();
-                              line_width = arrow_x+86.5f;
+                              line_width =buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getY();
+                              path_width = buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getX();
                                  
-                            path_width = 60;
+                            // path_width = buttonHandler.getBuildMode().getCoordinateList().get(0).getX();
 
                             path_width_end = path_width;
-                            line_width_end =  line_width;
-                                try {
-                                    animationThread.start();
+                            line_width_end =  0;
+                                  try {
+                                      animationThread.start();
 
-                                 } catch (Exception b) {
-                                     // TODO: handle exception
-                                 }
+                                  } catch (Exception b) {
+                                       // TODO: handle exception
+                                   }
                               
                                     
 
