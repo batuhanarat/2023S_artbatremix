@@ -93,7 +93,9 @@ import src.ConKUeror.UI.HelpScreen.HelpScreen;
         Boolean selected = false;
         List<TerritoryButton> buttonHistory = new ArrayList<TerritoryButton>();
 
-        Integer[][] line_width_ends = new Integer[43][43];
+        Integer[][]  line_width_ends = new Integer[43][43];
+        Float[][] line_width_neighborTerritories = new Float[43][43];
+        // Integer [] territory_neighbors = new Integer [];
 
         List<Integer> territory_Y_list = new ArrayList<Integer>();
 
@@ -197,6 +199,62 @@ private float line_scale;
 private int territory_id = -1;
 private CurvedArrow arrow = new CurvedArrow();
 
+
+public void animation(int territory_id,Integer [] neighborterritorId) {
+
+
+    for(int i =0;i<neighborterritorId.length;i++) {
+
+
+    float neighbor_x= buttonHandler.getBuildMode().getCoordinateList().get(neighborterritorId[i]).getX();
+    float neighbor_y= buttonHandler.getBuildMode().getCoordinateList().get(neighborterritorId[i]).getY();
+
+
+
+    float distance_neighbor_x = arrow_x - neighbor_x;
+    float distance_neighbor_y = arrow_y - neighbor_y;
+
+System.out.println("Distance x: " + distance_neighbor_x);
+System.out.println("Distance y: " + distance_neighbor_y);
+
+    double angle =  distance_neighbor_y/distance_neighbor_x;
+
+
+
+    double degree =  Math.toDegrees(Math.atan(angle));
+
+
+
+    double distance_neighbor_x_square = distance_neighbor_x*distance_neighbor_x;
+    double distance_neighbor_y_square = distance_neighbor_y*distance_neighbor_y;
+
+    double distance_overall = (float) Math.sqrt(distance_neighbor_x_square+distance_neighbor_y_square);
+
+
+
+
+    // if(distance_neighbor_y>0 && distance_neighbor_x<0)
+    //  degree = 360+degree;
+    //  else if(distance_neighbor_y<0 && distance_neighbor_x<0)
+    //  degree = degree;
+    //  else if(distance_neighbor_y<0 && distance_neighbor_x>0)
+    //  degree = 360 + degree;
+
+
+
+    line_width_ends[0][1] += 2;
+    if(line_width_ends[0][1]>distance_overall)
+    line_width_ends[0][1] = 0;
+
+    arrow.draw(g2d, arrow_x, arrow_y, path_height,path_width-arrow_x, line_height, line_width_ends[0][1]+arrow_x,degree);
+
+
+
+
+    }
+
+}
+
     public void initGUI() throws IOException {
 
         image = ImageIO.read(getClass().getResourceAsStream("/src/images/Map.png"));
@@ -223,6 +281,8 @@ public void paintComponent(Graphics g) {
     
 
     
+
+    
     for(int i=0; i<43;i++) {
 
 
@@ -237,43 +297,50 @@ public void paintComponent(Graphics g) {
 
             switch (territory_id) {
                 case 0:
-                float arrow_x_0 = arrow_x;
-                float arrow_y_0 = arrow_y;
-                float arrow_x_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getX();
-                float arrow_y_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getY();
+
+Integer [] array = new Integer[2];
+array[0] = 1;
+array[1] = 5;
+                animation(territory_id,array);
+
+
+            //     float arrow_x_0 = arrow_x;
+            //     float arrow_y_0 = arrow_y;
+            //     float arrow_x_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getX();
+            //     float arrow_y_1= buttonHandler.getBuildMode().getCoordinateList().get(1).getY();
               
                 
-                // path_height_end = path_height;
-                // line_height_end = line_height;
-                // path_height_end = 0.8f;
-                // path_width_end = 60;
-                // line_height_end = 0.5f;
-                // line_width_end = arrow_x +86.28f;
+            //     // path_height_end = path_height;
+            //     // line_height_end = line_height;
+            //     // path_height_end = 0.8f;
+            //     // path_width_end = 60;
+            //     // line_height_end = 0.5f;
+            //     // line_width_end = arrow_x +86.28f;
 
-                double angle_1 = (Math.abs(arrow_y_1 - arrow_y_0)/Math.abs(arrow_x_1-arrow_x_0));
-                arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height,path_width, line_height, arrow_x_0+line_width_ends[0][1], angle_1);
-                System.out.println("Path_width: " + path_width_end);
-                System.out.println("Line_width: " + line_width_end+ "\n");
+            //     double angle_1 = (Math.abs(arrow_y_1 - arrow_y_0)/Math.abs(arrow_x_1-arrow_x_0));
+            //     arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height,path_width, line_height, arrow_x_0+line_width_ends[0][1], angle_1);
+            //     System.out.println("Path_width: " + path_width_end);
+            //     System.out.println("Line_width: " + line_width_end+ "\n");
 
                 
-                int arrow_x_5 = buttonHandler.getBuildMode().getCoordinateList().get(5).getX();
-                int arrow_y_5= buttonHandler.getBuildMode().getCoordinateList().get(5).getY();
+            //     int arrow_x_5 = buttonHandler.getBuildMode().getCoordinateList().get(5).getX();
+            //     int arrow_y_5= buttonHandler.getBuildMode().getCoordinateList().get(5).getY();
            
               
 
-               double angle_5 = (double)(arrow_y_5 -arrow_y_0)/(double) (arrow_x_5- arrow_x_0); 
+            //    double angle_5 = (double)(arrow_y_5 -arrow_y_0)/(double) (arrow_x_5- arrow_x_0); 
 
-                double degree_5 = Math.toDegrees(Math.atan(angle_5));
+            //     double degree_5 = Math.toDegrees(Math.atan(angle_5));
 
                 
 
                 
                
-                arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height, path_width,line_height, arrow_x_0+line_width_ends[0][5], degree_5);
+            //     arrow.draw(g2d, arrow_x_0, arrow_y_0, path_height, path_width,line_height, arrow_x_0+line_width_ends[0][5], degree_5);
 
 
 
-                // arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
+            //     // arrow.draw(g2d, arrow_x, arrow_y, path_height, path_width, line_height, line_width);
                 
 
                     break;
@@ -284,109 +351,53 @@ public void paintComponent(Graphics g) {
 
 
                  case 1:
-                
-                  arrow_x_1 = arrow_x;
-                  arrow_y_1 = arrow_y;
-                  arrow_x_0= buttonHandler.getBuildMode().getCoordinateList().get(0).getX();
-                  arrow_y_0= buttonHandler.getBuildMode().getCoordinateList().get(0).getY();
-
-
-                  double angle_0 = (double) (arrow_y_1 - arrow_y_0)/(arrow_x_1-arrow_x_0);
-                  System.out.println("Angle: " +angle_0);
-                  double degree_0 =  Math.toDegrees(Math.atan(angle_0));
-
-
-                  double arrow_y1_y0 = (arrow_y_1-arrow_y_0);
-                      double arrow_x1_x0 = (arrow_x_1-arrow_x_0);
-
-                      double arrow_y1_y0_square = arrow_y1_y0*arrow_y1_y0;
-                      double arrow_x1_x0_square = arrow_x1_x0*arrow_x1_x0;
-
-                    //  float line_width_0 = (float) Math.sqrt(arrow_x1_x0_square+arrow_y1_y0_square);
-
-                    //  if(line_width_0<line_width_end)
-                    //  line_width_end = 0;
-
-        
-
-                  System.out.println("Degree: " +degree_0);
-                  
-                  
-                  if(degree_0<0)
-                  degree_0 = 180 +degree_0;
-
-
-                  System.out.println("Path_width: " + path_width_end);
-                  System.out.println("Line_width: " + line_width_end+ "\n");
-                     arrow.draw(g2d, arrow_x_1, arrow_y_1, path_height,path_width-arrow_x_0, line_height, line_width_end+arrow_x_1,degree_0);
-
-
-
-                     arrow_x_5= buttonHandler.getBuildMode().getCoordinateList().get(5).getX();
-                     arrow_y_5= buttonHandler.getBuildMode().getCoordinateList().get(5).getY();
-                      angle_5 = (double) (arrow_y_1 - arrow_y_5)/(arrow_x_1-arrow_x_5);
-                      degree_5 = Math.toDegrees(Math.atan(angle_5));
-                      if(degree_5<0)
-                      degree_5 = 180 +degree_5;
-
-
-
-
-
-
-
-
-                      
-                      arrow.draw(g2d, arrow_x_1, arrow_y_1, path_height,path_width-arrow_x_0, line_height, line_width_end+arrow_x_1,degree_5);
-
-
-
-
-
-
+                 Integer [] array1 = new Integer[3];
+                 array1[0] = 0;
+                 array1[1] = 5;
+                 array1[2] = 2;
+                                 animation(territory_id,array1);
 
 
     
-                      double arrow_x_2= buttonHandler.getBuildMode().getCoordinateList().get(2).getX();
-                      double arrow_y_2= buttonHandler.getBuildMode().getCoordinateList().get(2).getY();
+            //           double arrow_x_2= buttonHandler.getBuildMode().getCoordinateList().get(2).getX();
+            //           double arrow_y_2= buttonHandler.getBuildMode().getCoordinateList().get(2).getY();
                       
-                      double arrow_y1_y2 = (arrow_y_1-arrow_y_2);
-                      double arrow_x1_x2 = (arrow_x_1-arrow_x_2);
+            //           double arrow_y1_y2 = (arrow_y_1-arrow_y_2);
+            //           double arrow_x1_x2 = (arrow_x_1-arrow_x_2);
 
-                      System.out.println("Arrow_y1_y2: " +arrow_y1_y2 );
-                      System.out.println("Arrow_x1_x2: "+ arrow_x1_x2 );
+            //           System.out.println("Arrow_y1_y2: " +arrow_y1_y2 );
+            //           System.out.println("Arrow_x1_x2: "+ arrow_x1_x2 );
 
-                    double angle_2 = (double) Math.abs(arrow_y_1 - arrow_y_2)/Math.abs(arrow_x_1-arrow_x_2);
+            //         double angle_2 = (double) Math.abs(arrow_y_1 - arrow_y_2)/Math.abs(arrow_x_1-arrow_x_2);
 
                     
-                     double degree_2 = Math.toDegrees(Math.atan(angle_2));
-                    System.out.println("Angle_2: "+ angle_2);
-                    System.out.println("Degree_2: "+ degree_2);
+            //          double degree_2 = Math.toDegrees(Math.atan(angle_2));
+
+
+            //         System.out.println("Angle_2: "+ angle_2);
+            //         System.out.println("Degree_2: "+ degree_2);
                         
-                    double arrow_y1_y2_square = arrow_y1_y2*arrow_y1_y2;
-                    double arrow_x1_x2_square = arrow_x1_x2*arrow_x1_x2;
+            //         double arrow_y1_y2_square = arrow_y1_y2*arrow_y1_y2;
+            //         double arrow_x1_x2_square = arrow_x1_x2*arrow_x1_x2;
 
-            float line_width_2 = (float) Math.sqrt(arrow_x1_x2_square+arrow_y1_y2_square);
-
-
-            if(line_width_2<line_width_end)
-                     line_width_end = 0;
+            // // line_width = (float) Math.sqrt(arrow_x1_x2_square+arrow_y1_y2_square);
 
 
 
 
-                     if(arrow_y1_y2>0 && arrow_x1_x2<0)
-                     degree_2 = 360-degree_2;
-                     else if(arrow_y1_y2<0 && arrow_x1_x2<0)
-                     degree_2 = 270 -degree_2;
-                     else if(arrow_y1_y2<0 && arrow_x1_x2>0)
-                     degree_2 = 360 - degree_2;
+
+            //          if(arrow_y1_y2>0 && arrow_x1_x2<0)
+            //          degree_2 = 360-degree_2;
+            //          else if(arrow_y1_y2<0 && arrow_x1_x2<0)
+            //          degree_2 = 270 -degree_2;
+            //          else if(arrow_y1_y2<0 && arrow_x1_x2>0)
+            //          degree_2 = 360 - degree_2;
                      
 
-                     //  line_width =(float) (Math.sqrt(arrow_y1_y2*arrow_y1_y2 + arrow_x1_x2*arrow_x1_x2));
+            //          //  line_width =(float) (Math.sqrt(arrow_y1_y2*arrow_y1_y2 + arrow_x1_x2*arrow_x1_x2));
                       
                     
-                      arrow.draw(g2d, arrow_x_1, arrow_y_1, path_height,path_width-arrow_x_0, line_height, line_width_end+arrow_x_1,degree_2);
+            //           arrow.draw(g2d, arrow_x_1, arrow_y_1, path_height,path_width-arrow_x_0, line_height, line_width_ends[1][2]+arrow_x_1,degree_2);
 
     
 
@@ -564,10 +575,21 @@ public void paintComponent(Graphics g) {
             setLocationRelativeTo(null);
             setLocationRelativeTo(null);
 
+    
+   
+
 
 
         setVisible(true);
         createTerritoryButtons();
+
+
+
+     
+
+
+
+
         createFunctionalityButtons();
 
     }
@@ -580,16 +602,23 @@ public void paintComponent(Graphics g) {
 
             for (int i=0;i<43;i++){
 
-                for(int j =0;j<43;j++) {
+                for(int j =0;j<43&& i!=j;j++) {
 
-                    if(i == j) break;
+                    // if(i == j || i!= territory_id) break;
 
-                if(territory_id == i)
-            line_width_ends[i][j] +=2;
 
+
+                    if(i == territory_id && i!=j) {
+                        line_width_ends[i][j] +=2;
             
-if(line_width_ends[i][j]>line_width)
-line_width_ends[i][j] = 0;
+                        
+            if(line_width_ends[i][j]>line_width_neighborTerritories[i][j])
+            line_width_ends[i][j] = 0;
+            
+
+
+
+                }
 
             }
 
@@ -651,8 +680,10 @@ System.out.println("LineWidth: " + line_width_end);
       
         for(int i= 0 ; i<42 ; i++) {
 
-            line_width_ends[i][i] = 0;
-        
+for(int j= 0 ; j<42 ; j++) {
+            line_width_ends[i][j] = 0;
+            line_width_neighborTerritories[i][j] = 0.f;
+}
 
             int x = buttonHandler.getXFromList(i);
             int y = buttonHandler.getYFromList(i);
