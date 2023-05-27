@@ -230,23 +230,27 @@ System.out.println("Distance y: " + distance_neighbor_y);
 
     double distance_overall = (float) Math.sqrt(distance_neighbor_x_square+distance_neighbor_y_square);
 
+System.out.println("Distance x: "+ distance_neighbor_x);
+System.out.println("Distance y: "+ distance_neighbor_y);
+System.out.println(angle);
+System.out.println("Degree: "+ degree);
 
 
 
-    // if(distance_neighbor_y>0 && distance_neighbor_x<0)
-    //  degree = 360+degree;
-    //  else if(distance_neighbor_y<0 && distance_neighbor_x<0)
-    //  degree = degree;
-    //  else if(distance_neighbor_y<0 && distance_neighbor_x>0)
-    //  degree = 360 + degree;
+     if(distance_neighbor_y>0 && distance_neighbor_x<0)
+      degree = -degree;
+      else if(distance_neighbor_y<0 && distance_neighbor_x<0)
+      degree = degree;
+      else if(distance_neighbor_y<0 && distance_neighbor_x>0)
+      degree = 180+degree;
 
 
+      System.out.println("Update Degree: "+ degree);
+    line_width_ends[0][i] += 2;
+    if(line_width_ends[0][i]>distance_overall)
+    line_width_ends[0][i] = 0;
 
-    line_width_ends[0][1] += 2;
-    if(line_width_ends[0][1]>distance_overall)
-    line_width_ends[0][1] = 0;
-
-    arrow.draw(g2d, arrow_x, arrow_y, path_height,path_width-arrow_x, line_height, line_width_ends[0][1]+arrow_x,degree);
+    arrow.draw(g2d, arrow_x, arrow_y, path_height,path_width-arrow_x, line_height, line_width_ends[0][i]+arrow_x,degree);
 
 
 
@@ -600,32 +604,32 @@ array[1] = 5;
      Thread animationThread = new Thread(() -> {
         while (true) {
 
-            for (int i=0;i<43;i++){
+//             for (int i=0;i<43;i++){
 
-                for(int j =0;j<43&& i!=j;j++) {
+//                 for(int j =0;j<43&& i!=j;j++) {
 
-                    // if(i == j || i!= territory_id) break;
+//                     // if(i == j || i!= territory_id) break;
 
 
 
-                    if(i == territory_id && i!=j) {
-                        line_width_ends[i][j] +=2;
+//                     if(i == territory_id && i!=j) {
+//                         line_width_ends[i][j] +=2;
             
                         
-            if(line_width_ends[i][j]>line_width_neighborTerritories[i][j])
-            line_width_ends[i][j] = 0;
+//             if(line_width_ends[i][j]>line_width_neighborTerritories[i][j])
+//             line_width_ends[i][j] = 0;
             
 
 
 
-                }
+//                 }
 
-            }
+//             }
 
-        }
+//         }
             
 
-System.out.println("LineWidth: " + line_width_end);
+// System.out.println("LineWidth: " + line_width_end);
 
 
 
