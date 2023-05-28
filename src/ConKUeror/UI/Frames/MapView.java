@@ -238,7 +238,7 @@ System.out.println("Degree: "+ degree);
 
 
      if(distance_neighbor_y>0 && distance_neighbor_x<0)
-      degree = -degree;
+      degree = -degree-20;
       else if(distance_neighbor_y<0 && distance_neighbor_x<0)
       degree = degree;
       else if(distance_neighbor_y<0 && distance_neighbor_x>0)
@@ -416,7 +416,14 @@ array[1] = 5;
 
                  case 2:
 
-
+                 Integer [] array2 = new Integer[5];
+                 array2[0] = 1;
+                 array2[1] = 4;
+                 array2[2] = 3;
+                 array2[3] = 23;
+                 array2[4] = 22;
+                               
+                 animation(territory_id,array2);
 
 
                  break;
