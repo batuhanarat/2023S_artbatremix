@@ -238,12 +238,13 @@ System.out.println("Degree: "+ degree);
 
 
      if(distance_neighbor_y>0 && distance_neighbor_x<0)
-      degree = -degree-20;
+      degree = degree;
       else if(distance_neighbor_y<0 && distance_neighbor_x<0)
       degree = degree;
       else if(distance_neighbor_y<0 && distance_neighbor_x>0)
-      degree = 180+degree;
-
+      degree = degree-180;
+      else if(distance_neighbor_y>0 && distance_neighbor_x>0)
+      degree =180+ degree;
 
       System.out.println("Update Degree: "+ degree);
     line_width_ends[0][i] += 2;
@@ -430,7 +431,154 @@ array[1] = 5;
 
 
 
+                 case 3:
+                  
+                 Integer [] array3 = new Integer[4];
+                 array3[0] = 2;
+                 array3[1] = 4;
+                 array3[2] = 7;
+                 array3[3] = 22;
+                               
+                 animation(territory_id,array3);
 
+
+                 break;
+
+
+                 case 4:
+
+                 Integer [] array4 = new Integer[6];
+                 array4[0] = 5;
+                  array4[1] = 2;
+                  array4[2] = 7;
+                  array4[3] = 6;
+                  array4[4] = 3;
+                  array4[5] = 1;
+
+                               
+                 animation(territory_id,array4);
+
+                 
+                 break;
+
+                 case 5:
+
+                 Integer [] array5 = new Integer[4];
+                  array5[0] = 0;
+                  array5[1] = 1;
+                  array5[2] = 4;
+                  array5[3] = 6;
+              
+
+                               
+                 animation(territory_id,array5);
+
+
+                 break;
+
+
+
+
+                 
+                 case 6:
+
+                 Integer [] array6 = new Integer[4];
+                  array6[0] = 5;
+                  array6[1] = 4;
+                  array6[2] = 7;
+                  array6[3] = 8;
+              
+
+                               
+                 animation(territory_id,array6);
+
+
+                 break;
+
+     
+                 case 7:
+
+                 Integer [] array7 = new Integer[7];
+                  array7[0] = 8;
+                  array7[1] = 6;
+                  array7[2] = 4;
+                  array7[3] = 3;
+                  array7[4] = 9;
+                  array7[5] = 22;
+                  array7[6] = 21;
+
+
+                               
+                 animation(territory_id,array7);
+
+
+                 break;
+
+
+     
+                 case 8:
+
+                 Integer [] array8 = new Integer[4];
+                  array8[0] = 6;
+                  array8[1] = 7;
+                  array8[2] = 9;
+                  array8[3] = 21;
+                 
+
+
+                               
+                 animation(territory_id,array8);
+
+
+                 break;
+
+                 case 9:
+
+                 Integer [] array9 = new Integer[4];
+                  array9[0] = 8;
+                  array9[1] = 21;
+                  array9[2] = 12;
+                  array9[3] = 10;
+                 
+
+
+                               
+                 animation(territory_id,array9);
+
+
+                 break;
+
+
+
+                 case 10:
+
+                 Integer [] array10 = new Integer[3];
+                  array10[0] = 9;
+                  array10[1] = 12;
+                  array10[2] = 11;
+                 
+
+
+                               
+                 animation(territory_id,array10);
+
+
+                 break;
+
+                 case 11:
+
+                 Integer [] array11 = new Integer[3];
+                  array11[0] = 12;
+                  array11[1] = 10;
+                  array11[2] = 15;
+
+
+
+                               
+                 animation(territory_id,array11);
+
+
+                 break;
                 default:
                     break;
             }
