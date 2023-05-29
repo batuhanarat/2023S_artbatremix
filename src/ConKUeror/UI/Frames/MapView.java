@@ -356,10 +356,13 @@ array[1] = 5;
 
 
                  case 1:
-                 Integer [] array1 = new Integer[3];
+                 Integer [] array1 = new Integer[5];
                  array1[0] = 0;
                  array1[1] = 5;
                  array1[2] = 2;
+                 array1[3] = 4;
+                 array1[4] = 3;
+
                                  animation(territory_id,array1);
 
 
@@ -534,12 +537,13 @@ array[1] = 5;
 
                  case 9:
 
-                 Integer [] array9 = new Integer[4];
+                 Integer [] array9 = new Integer[5];
                   array9[0] = 8;
                   array9[1] = 21;
                   array9[2] = 12;
                   array9[3] = 10;
-                 
+                  array9[4] = 7;
+
 
 
                                
@@ -597,20 +601,111 @@ array[1] = 5;
 
                  break;
 
-                //  case 13:
+                 case 13:
 
-                //  Integer [] array13 = new Integer[5];
-                //   array13[0] = 9;
-                //   array13[1] = 10;
-                //   array13[2] = 11;
-                //   array13[3] = 13;
-                //   array13[4] = 21;
+                 Integer [] array13 = new Integer[6];
+                  array13[0] = 21;
+                  array13[1] = 20;
+                  array13[2] = 18;
+                  array13[3] = 17;
+                  array13[4] = 12;
+                  array13[5] = 14;
 
           
-                //  animation(territory_id,array12);
+                 animation(territory_id,array13);
 
 
-                //  break;
+                 break;
+
+                 case 14:
+
+                 Integer [] array14 = new Integer[4];
+                  array14[0] = 15;
+                  array14[1] = 17;
+                  array14[2] = 18;
+                  array14[3] = 13;
+
+          
+                 animation(territory_id,array14);
+
+
+                 break;
+
+
+                 
+                 case 15:
+
+                 Integer [] array15 = new Integer[5];
+                  array15[0] = 11;
+                  array15[1] = 14;
+                  array15[2] = 15;
+                  array15[3] = 17;
+                  array15[4] = 16;
+
+
+          
+                 animation(territory_id,array15);
+
+
+                 break;
+
+                 case 16:
+
+                 Integer [] array16 = new Integer[5];
+                  array16[0] = 15;
+                  array16[1] = 14;
+                  array16[2] = 17;
+                  array16[3] = 17;
+                  array16[4] = 41;
+
+
+          
+                 animation(territory_id,array16);
+
+
+                 break;
+
+
+                 case 17:
+
+                 Integer [] array17 = new Integer[5];
+                  array17[0] = 14;
+                  array17[1] = 13;
+                  array17[2] = 15;
+                  array17[3] = 19;
+                  array17[4] = 18;
+
+
+          
+                 animation(territory_id,array17);
+
+
+                 break;
+
+
+
+                 case 18:
+
+                 Integer [] array18 = new Integer[4];
+                  array18[0] = 20;
+                  array18[1] = 13;
+                  array18[2] = 17;
+                  array18[3] = 19;
+               
+
+
+          
+                 animation(territory_id,array18);
+
+
+                 break;
+
+
+
+
+
+
+
 
 
 
