@@ -579,6 +579,41 @@ array[1] = 5;
 
 
                  break;
+
+
+
+                 case 12:
+
+                 Integer [] array12 = new Integer[5];
+                  array12[0] = 9;
+                  array12[1] = 10;
+                  array12[2] = 11;
+                  array12[3] = 13;
+                  array12[4] = 21;
+
+          
+                 animation(territory_id,array12);
+
+
+                 break;
+
+                //  case 13:
+
+                //  Integer [] array13 = new Integer[5];
+                //   array13[0] = 9;
+                //   array13[1] = 10;
+                //   array13[2] = 11;
+                //   array13[3] = 13;
+                //   array13[4] = 21;
+
+          
+                //  animation(territory_id,array12);
+
+
+                //  break;
+
+
+
                 default:
                     break;
             }
