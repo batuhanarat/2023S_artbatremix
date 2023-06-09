@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 
 import ConKUeror.UI.Buttons.TerritoryButton;
 import ConKUeror.UI.Frames.ArrowAnimation.Arrow;
+import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
 import ConKUeror.UI.HelpScreen.HelpScreen;
 import ConKUeror.UI.Panels.InfoPanel;
 import ConKUeror.UI.Panels.PlayerInteractionPanel;
@@ -305,11 +306,12 @@ public void initGUI() throws IOException {
             
                         switch (territory_id) {
                             case 0:
+                            arrowAnimation a = new arrowAnimation();
             
                         Integer [] array = new Integer[2];
                         array[0] = 1;
                         array[1] = 5;
-                            animation(territory_id,array);
+                            a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d);
                            
             
                                 break;
