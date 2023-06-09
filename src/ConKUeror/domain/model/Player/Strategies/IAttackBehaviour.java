@@ -9,6 +9,6 @@ import ConKUeror.domain.model.Army.Infantry;
 
 public interface IAttackBehaviour {
    
-    void attack(List<Infantry> attackingInfantries, List<Cavalry> attackingCavalries,
+    boolean attack(List<Infantry> attackingInfantries, List<Cavalry> attackingCavalries,
             List<Artillery> attackingArtilleries, Army defendingArmy);
 }

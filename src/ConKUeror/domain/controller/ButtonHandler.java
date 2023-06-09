@@ -180,8 +180,8 @@ if(FortifyMode.canFortify()) {
      */
     public void increaseArmyCount()
     {
-        // System.out.print("increase army count methodundayım");
-        gMode.publishArmyIncreasedEvent(0);
+        
+        
 
         AttackingArmyPanel attackingArmyPanel = new AttackingArmyPanel("Choose Army Units");
 
@@ -229,11 +229,15 @@ if(FortifyMode.canFortify()) {
 
         i = 0;
 
+        // System.out.print("increase army count methodundayım");
+        gMode.publishArmyIncreasedEvent(0);
     }
 
     public void attack()
     {
-        gMode.setForAttack(attackingInfantries, attackingCavalries, attackingArtilleries);
+        boolean attackResult = gMode.setForAttack(attackingInfantries, attackingCavalries, attackingArtilleries);
+        gMode.publishAttackResultEvent(attackResult);
+        System.out.println(attackResult);
     }
 
     public void deploy(){

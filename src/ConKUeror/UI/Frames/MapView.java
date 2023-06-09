@@ -466,7 +466,20 @@ public void updateTerritory(int buttonID, int deployedArmy) {
 
 }
 
-
+public void updateAfterAttack(boolean attackResult, Player playerInTurn, Territory attacker, Territory defender)
+{
+    if (attackResult)
+    {
+        TerritoryButton defenderButton = territoryButtonsList.get(defender.getId());
+        defenderButton.setColor(playerInTurn.getColor());
+        defenderButton.setArmyValue(6);
+    }
+    else
+    {
+        TerritoryButton attackerButton = territoryButtonsList.get(attacker.getId());
+        attackerButton.setArmyValue(1);
+    }
+}
 
 
 

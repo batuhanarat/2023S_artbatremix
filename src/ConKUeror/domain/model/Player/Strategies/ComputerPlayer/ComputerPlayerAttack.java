@@ -14,9 +14,10 @@ import ConKUeror.domain.model.Player.Strategies.IAttackBehaviour;
 public class ComputerPlayerAttack implements IAttackBehaviour,Serializable {
 
     @Override
-    public void attack(List<Infantry> attackingInfantries, List<Cavalry> attackingCavalries,
-            List<Artillery> attackingArtilleries, Army defendingArmy) {
-        // TODO Auto-generated method stub
+    public boolean attack(List<Infantry> attackingInfantries, List<Cavalry> attackingCavalries,
+    List<Artillery> attackingArtilleries, Army defendingArmy)
+    {
+        return false;
     }
     
     

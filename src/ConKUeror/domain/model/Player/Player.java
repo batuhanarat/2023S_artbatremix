@@ -84,10 +84,11 @@ public class Player implements Serializable {
             db.deploy(t,army);
         }
 
-        public void attack(List<Infantry> attackingInfantries, List<Cavalry> attackingCavalries,
+        public boolean attack(List<Infantry> attackingInfantries, List<Cavalry> attackingCavalries,
         List<Artillery> attackingArtilleries, Army defendingArmy)
         {
-            ab.attack(attackingInfantries, attackingCavalries, attackingArtilleries, defendingArmy);
+            boolean attackResult = ab.attack(attackingInfantries, attackingCavalries, attackingArtilleries, defendingArmy);
+            return attackResult;
         }
 
 
