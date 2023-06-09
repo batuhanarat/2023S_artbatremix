@@ -57,7 +57,8 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
     Integer[][]  line_width_ends = new Integer[43][43];
     Float[][] line_width_neighborTerritories = new Float[43][43];
   
-    
+    int line_width_end =0;
+
 
     private int count = 0;
     int threadStarter = 1;
@@ -103,7 +104,6 @@ public MapView() throws IOException {
 
 
     initGUI();
-
     
 
    // String openingMessage = startHandler.enterMessageString();
@@ -201,7 +201,6 @@ Graphics2D g2d;
 float path_width_end;
 float path_height_end;
 float line_height_end;
-float line_width_end;
 
 
 public void animation(int territory_id,Integer [] neighborterritorId) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
@@ -312,7 +311,7 @@ public void initGUI() throws IOException {
                         array[0] = 1;
                         array[1] = 5;
                             // a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
-                           int line_width_end = 0;
+                     
                             a.Animation(territory_id,array,null,line_height,path_height,g2d, line_width_end);
 
                                 break;

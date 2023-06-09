@@ -51,8 +51,18 @@ public class arrowAnimation {
        float arrow_y = m.coordinates.get(territory_id).getY();
       float  path_width = m.coordinates.get(territory_id).getX();
 
-       
-       
+      System.out.println("Arrow X: " + arrow_x);
+      System.out.println("Arrow Y: " + arrow_y);
+      System.out.println("Line width end: " + line_width_end);
+
+
+           
+    float neighbor_x= m.coordinates.get(neighborterritorId[0]).getX();
+    
+    float neighbor_y= m.coordinates.get(neighborterritorId[0]).getY();
+    System.out.println("Neighbor x: " + neighbor_x);
+    System.out.println("Neighbor y: " + neighbor_y);
+
         buttonHandler = b;
         // arrow_x = x;
         // arrow_y = y;
@@ -67,15 +77,11 @@ public class arrowAnimation {
 
         
     
-    for(int i =0;i<neighborterritorId.length;i++) {
     
     // float neighbor_x= buttonHandler.getBuildMode().getCoordinateList().get(neighborterritorId[i]).getX();
     
     // float neighbor_y= buttonHandler.getBuildMode().getCoordinateList().get(neighborterritorId[i]).getY();
-    
-    float neighbor_x= neighborterritorId[0];
-    
-    float neighbor_y= neighborterritorId[0];
+
 
     
     
@@ -125,7 +131,7 @@ public class arrowAnimation {
     
     
     
-    }
+    
     
     }
     
