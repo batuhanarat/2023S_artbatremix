@@ -27,7 +27,6 @@ import javax.swing.JPanel;
 
 import ConKUeror.UI.Buttons.TerritoryButton;
 import ConKUeror.UI.Frames.ArrowAnimation.Arrow;
-import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
 import ConKUeror.UI.HelpScreen.HelpScreen;
 import ConKUeror.UI.Panels.InfoPanel;
 import ConKUeror.UI.Panels.PlayerInteractionPanel;

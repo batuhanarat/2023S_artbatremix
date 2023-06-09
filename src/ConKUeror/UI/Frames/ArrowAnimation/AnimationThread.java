@@ -1,23 +1,27 @@
 package ConKUeror.UI.Frames.ArrowAnimation;
+
+
 import java.awt.List;
 import java.util.ArrayList;
 
 import ConKUeror.domain.model.Board.Territory;
 
-public class AnimationThread1 {
+public class AnimationThread {
 
-    public AnimationThread1(Territory t, List<Integer> territoriesAvailableForAttack) {
+   
+public Territory t;
+ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();   
+
+    public AnimationThread(Territory t, ArrayList<Integer> territoriesAvailableForAttack) {
 
         this.t = t;
         this.territoriesAvailableForAttack = territoriesAvailableForAttack;
-    
+    animationThread.start();
     
     
     
     }
     
-public Territory t;
-ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();    
 
     Thread animationThread = new Thread(() -> {
 

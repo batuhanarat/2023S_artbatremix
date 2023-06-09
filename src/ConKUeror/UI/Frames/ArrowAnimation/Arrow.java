@@ -1,6 +1,7 @@
 package ConKUeror.UI.Frames.ArrowAnimation;
 
 
+
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
@@ -11,6 +12,10 @@ public class Arrow extends JPanel implements ArrowMovement {
     private double angle;
 
 
+
+    public Arrow() {
+        
+    }
     @Override
     public void paintComponent(Graphics g) {
     super.paintComponent(g);
