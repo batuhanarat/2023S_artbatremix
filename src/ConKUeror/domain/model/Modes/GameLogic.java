@@ -568,8 +568,14 @@ import ConKUeror.domain.controller.CardController;
   }
 
 
+  
+
       public void prepareGame(Territory t,GameMode gameMode) throws InterruptedException {
 
+
+
+
+        
         PlayerExpert.setPlayerInTurn(playerInTurn);
       if (playerInTurn == null || playerInTurn.getType().equals("Real")) {
 
