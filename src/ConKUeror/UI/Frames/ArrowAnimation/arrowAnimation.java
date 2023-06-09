@@ -49,7 +49,7 @@ public class arrowAnimation {
      return distance;
 
     }
-    public void Animation(int territory_id,Integer [] neighborterritorId, ButtonHandler b,float line_h,float path_h,Graphics2D g2, int line_width_end) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
+    public void Animation(int territory_id,int i, ButtonHandler b,Graphics2D g2, int line_width_end) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
         // should have a size of 42. The red line starting from the button territory_id
         // should end to its neighbor buttons territoryId.
     
@@ -58,8 +58,8 @@ public class arrowAnimation {
        float arrow_x = m.coordinates.get(territory_id).getX();
        float arrow_y = m.coordinates.get(territory_id).getY();
       float  path_width = m.coordinates.get(territory_id).getX();
-      line_h = 0.5f;
-      path_h = 0.8f;
+     float line_h = 0.5f;
+      float path_h = 0.8f;
 
       System.out.println("Arrow X: " + arrow_x);
       System.out.println("Arrow Y: " + arrow_y);
@@ -67,9 +67,9 @@ public class arrowAnimation {
 
 
            
-    float neighbor_x= m.coordinates.get(neighborterritorId[0]).getX();
+    float neighbor_x= m.coordinates.get(i).getX();
     
-    float neighbor_y= m.coordinates.get(neighborterritorId[0]).getY();
+    float neighbor_y= m.coordinates.get(i).getY();
     System.out.println("Neighbor x: " + neighbor_x);
     System.out.println("Neighbor y: " + neighbor_y);
 

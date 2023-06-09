@@ -314,7 +314,7 @@ public void initGUI() throws IOException {
                             // a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
                      
                             line_width_end+=2;
-                            a.Animation(territory_id,array,null,line_height,path_height,g2d, line_width_end);
+                            a.Animation(territory_id,array[0],null,g2d, line_width_end);
                              if(line_width_end> a.getDistance())
                              line_width_end = 0;
                                 break;

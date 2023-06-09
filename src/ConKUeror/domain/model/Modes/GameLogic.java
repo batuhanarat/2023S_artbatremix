@@ -18,7 +18,8 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 
   import ConKUeror.UI.Buttons.TerritoryButton;
-  import ConKUeror.domain.controller.CardController;
+import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
+import ConKUeror.domain.controller.CardController;
   import ConKUeror.domain.controller.MapListener;
   import ConKUeror.domain.controller.NextButtonListener;
   import ConKUeror.domain.controller.RollDieListener;
@@ -664,8 +665,26 @@ import java.util.LinkedHashMap;
             showAvailableAttacks(territoriesAvailableForAttack);
             addToMemory(t);
 
-
+            int line_width_end = 0;
+            int territory_id = t.getId();
+            float line_height = 0.4f;
+            float path_height = 0.2f;
             
+
+            for(int i: territoriesAvailableForAttack) {
+
+
+              arrowAnimation a = new arrowAnimation();
+              line_width_end+=2;
+              a.Animation(territory_id,i,null,t.getGraphics(), line_width_end);
+               if(line_width_end> a.getDistance())
+               line_width_end = 0;
+
+
+            }
+            
+
+
             
             break;
 

@@ -127,7 +127,7 @@ public class Territory implements Serializable {
             //   float path_width_end = path_width;
             //   int line_width_end =  0;
 
-                 a.Animation(id,b, null,line_height,path_height,this.getGraphics(), line_width_end);
+                 a.Animation(id,b[0], null,this.getGraphics(), line_width_end);
 
             //     MapConstants m = new MapConstants();
             //     m.fillCoordinates();
