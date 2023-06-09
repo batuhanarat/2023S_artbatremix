@@ -41,7 +41,7 @@ public class arrowAnimation {
     Integer[][]  line_width_ends = new Integer[43][43];
     Float[][] line_width_neighborTerritories = new Float[43][43];
     
-    public void Animation(int territory_id,Integer [] neighborterritorId, ButtonHandler b,float line_h,float path_w,float path_h,Graphics2D g2, Integer[][] line_width_ends, Float[][] line_width_neighborTerritories) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
+    public void Animation(int territory_id,Integer [] neighborterritorId, ButtonHandler b,float line_h,float path_h,Graphics2D g2, int line_width_end) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
         // should have a size of 42. The red line starting from the button territory_id
         // should end to its neighbor buttons territoryId.
     
@@ -73,9 +73,9 @@ public class arrowAnimation {
     
     // float neighbor_y= buttonHandler.getBuildMode().getCoordinateList().get(neighborterritorId[i]).getY();
     
-    float neighbor_x= buttonHandler.getBuildMode().getCoordinateList().get(neighborterritorId[i]).getX();
+    float neighbor_x= neighborterritorId[0];
     
-    float neighbor_y= buttonHandler.getBuildMode().getCoordinateList().get(neighborterritorId[i]).getY();
+    float neighbor_y= neighborterritorId[0];
 
     
     
@@ -116,11 +116,11 @@ public class arrowAnimation {
     degree =180+ degree;
     
     System.out.println("Update Degree: "+ degree);
-    line_width_ends[0][i] += 2;
-    if(line_width_ends[0][i]>distance_overall)
-    line_width_ends[0][i] = 0;
+    line_width_end += 2;
+    if(line_width_end>distance_overall)
+    line_width_end = 0;
     
-    arrow.draw(g2d, arrow_x, arrow_y, path_height,path_width-arrow_x, line_height, line_width_ends[0][i]+arrow_x,degree);
+    arrow.draw(g2d, arrow_x, arrow_y, path_height,path_width-arrow_x, line_height, line_width_end+arrow_x,degree);
     
     
     

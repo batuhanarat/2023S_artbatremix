@@ -117,6 +117,7 @@ public class Territory implements Serializable {
                 b[0] = set.getKey();
 
 
+                int line_width_end = 0;
                 
                float line_height = 0.5f;
                float path_height = 0.8f;
@@ -126,7 +127,7 @@ public class Territory implements Serializable {
             //   float path_width_end = path_width;
             //   int line_width_end =  0;
 
-                 a.Animation(id,b, id, totalArmyUnit, id, totalArmyUnit, id, null, null, null);
+                 a.Animation(id,b, null,line_height,path_height,this.getGraphics(), line_width_end);
 
             //     MapConstants m = new MapConstants();
             //     m.fillCoordinates();

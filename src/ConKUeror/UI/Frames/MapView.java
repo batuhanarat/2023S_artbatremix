@@ -312,8 +312,9 @@ public void initGUI() throws IOException {
                         array[0] = 1;
                         array[1] = 5;
                             // a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
-                           
-            
+                           int line_width_end = 0;
+                            a.Animation(territory_id,array,null,line_height,path_height,g2d, line_width_end);
+
                                 break;
             
             

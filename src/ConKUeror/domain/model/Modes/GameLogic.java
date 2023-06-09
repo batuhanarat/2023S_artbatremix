@@ -663,6 +663,9 @@ import java.util.LinkedHashMap;
             t.checkAvailableAttacks(territoriesAvailableForAttack);
             showAvailableAttacks(territoriesAvailableForAttack);
             addToMemory(t);
+
+
+            
             
             break;
 
