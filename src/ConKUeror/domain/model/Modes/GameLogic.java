@@ -651,12 +651,19 @@ import java.util.LinkedHashMap;
             System.out.println("Attack");
             this.phaseIndex=5;
             this.inputTerritory=t;
+           
+
+                    
+
+
+
 
             //Map<Integer,Territory>  adjacentList = t.getAdjacencyList();
             List<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
             t.checkAvailableAttacks(territoriesAvailableForAttack);
             showAvailableAttacks(territoriesAvailableForAttack);
             addToMemory(t);
+            
             break;
 
           case FORTIFY:

@@ -311,7 +311,7 @@ public void initGUI() throws IOException {
                         Integer [] array = new Integer[2];
                         array[0] = 1;
                         array[1] = 5;
-                            a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d);
+                            a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
                            
             
                                 break;
@@ -1211,7 +1211,6 @@ public void createTerritoryButtons() {
                     for (Territory t : memoryTerritory) {
                         System.out.println("Hello World");
                         if (t != null) {
-
 
 
                             System.out.println(t.getId());

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.awt.Color;
 
-
+import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
 import ConKUeror.domain.model.Army.Army;
 import ConKUeror.domain.model.Player.Player;
 
@@ -101,8 +101,22 @@ public class Territory implements Serializable {
             if (canAttackTerritory(this, Board.getTerritories().get(set.getKey())))
             {
                 territoriesAvailableForAttack.add(set.getKey());
+                arrowAnimation a = new arrowAnimation();
+
+            //     MapConstants m = new MapConstants();
+            //     m.fillCoordinates();
+            //    int arrow_x = m.coordinates.get(this.id).getX();
+            //    int arrow_y = m.coordinates.get(this.id).getY();
+               
+
+
+
+
             }
         }
+
+        // a.Animation(id, null, null, id, totalArmyUnit, id, totalArmyUnit, id, null, null, null);
+
     }
 
     private boolean canAttackTerritory(Territory attacker, Territory defender)

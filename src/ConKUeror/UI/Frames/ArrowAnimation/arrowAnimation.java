@@ -17,6 +17,7 @@ import java.sql.Array;
 import java.util.Map;
 
 import ConKUeror.domain.controller.ButtonHandler;
+import ConKUeror.domain.model.Board.MapConstants;
 
 public class arrowAnimation {
 
@@ -41,12 +42,20 @@ public class arrowAnimation {
     Float[][] line_width_neighborTerritories = new Float[43][43];
     
     public void Animation(int territory_id,Integer [] neighborterritorId, ButtonHandler b, float x, 
-    float y,float line_h,float path_w,float path_h,Graphics2D g2) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
+    float y,float line_h,float path_w,float path_h,Graphics2D g2, Integer[][] line_width_ends, Float[][] line_width_neighborTerritories) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
         // should have a size of 42. The red line starting from the button territory_id
         // should end to its neighbor buttons territoryId.
+    
+        MapConstants m = new MapConstants();
+        m.fillCoordinates();
+       float arrow_x = m.coordinates.get(territory_id).getX();
+       float arrow_y = m.coordinates.get(territory_id).getY();
+       
+       
+       
         buttonHandler = b;
-        arrow_x = x;
-        arrow_y = y;
+        // arrow_x = x;
+        // arrow_y = y;
         line_height  = line_h;
         path_height = path_h;
         path_width = path_w;
