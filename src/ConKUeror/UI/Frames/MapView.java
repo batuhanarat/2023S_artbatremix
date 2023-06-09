@@ -56,8 +56,8 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
 
     Integer[][]  line_width_ends = new Integer[43][43];
     Float[][] line_width_neighborTerritories = new Float[43][43];
+    int line_width_end;
   
-    int line_width_end =0;
 
 
     private int count = 0;
@@ -258,6 +258,7 @@ System.out.println("Update Degree: "+ degree);
 line_width_ends[0][i] += 2;
 if(line_width_ends[0][i]>distance_overall)
 line_width_ends[0][i] = 0;
+System.out.println("Line endss: " + line_width_ends[0][i]);
 
 arrow.draw(g2d, arrow_x, arrow_y, path_height,path_width-arrow_x, line_height, line_width_ends[0][i]+arrow_x,degree);
 
@@ -312,8 +313,10 @@ public void initGUI() throws IOException {
                         array[1] = 5;
                             // a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
                      
+                            line_width_end+=2;
                             a.Animation(territory_id,array,null,line_height,path_height,g2d, line_width_end);
-
+                             if(line_width_end> a.getDistance())
+                             line_width_end = 0;
                                 break;
             
             
@@ -1131,11 +1134,9 @@ public void initGUI() throws IOException {
 Thread animationThread = new Thread(() -> {
 
     // if(!pauseScreen.isVisible()) threader = true; 
-    while (true) {
+ while (true) {
 
-        
         mapPanel.repaint();
-
 
       if(threadStarter == 0) {
         try {
@@ -1174,6 +1175,7 @@ public void createTerritoryButtons() {
         for(int j= 0 ; j<42 ; j++) {
             line_width_ends[i][j] = 0;
             line_width_neighborTerritories[i][j] = 0.f;
+            line_width_end = 0;
 }
 
 

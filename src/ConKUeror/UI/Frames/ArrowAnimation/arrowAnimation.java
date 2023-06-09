@@ -34,13 +34,21 @@ public class arrowAnimation {
     float path_width_end;
     float path_height_end;
     float line_height_end;
-    float line_width_end;
+    // float line_width_end;
     ButtonHandler buttonHandler;
-
+    double distance;
     
     Integer[][]  line_width_ends = new Integer[43][43];
     Float[][] line_width_neighborTerritories = new Float[43][43];
+
     
+    
+    public double getDistance() {
+
+
+     return distance;
+
+    }
     public void Animation(int territory_id,Integer [] neighborterritorId, ButtonHandler b,float line_h,float path_h,Graphics2D g2, int line_width_end) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
         // should have a size of 42. The red line starting from the button territory_id
         // should end to its neighbor buttons territoryId.
@@ -50,6 +58,8 @@ public class arrowAnimation {
        float arrow_x = m.coordinates.get(territory_id).getX();
        float arrow_y = m.coordinates.get(territory_id).getY();
       float  path_width = m.coordinates.get(territory_id).getX();
+      line_h = 0.5f;
+      path_h = 0.8f;
 
       System.out.println("Arrow X: " + arrow_x);
       System.out.println("Arrow Y: " + arrow_y);
@@ -105,11 +115,13 @@ public class arrowAnimation {
     
     double distance_overall = (float) Math.sqrt(distance_neighbor_x_square+distance_neighbor_y_square);
     
+    distance = distance_overall;
+    
     System.out.println("Distance x: "+ distance_neighbor_x);
     System.out.println("Distance y: "+ distance_neighbor_y);
     System.out.println(angle);
     System.out.println("Degree: "+ degree);
-    
+    System.out.println("Distance overall: "+ distance_overall);
     
     
     if(distance_neighbor_y>0 && distance_neighbor_x<0)
@@ -122,9 +134,10 @@ public class arrowAnimation {
     degree =180+ degree;
     
     System.out.println("Update Degree: "+ degree);
-    line_width_end += 2;
     if(line_width_end>distance_overall)
     line_width_end = 0;
+    System.out.println("Line end: "+ line_width_end);
+
     
     arrow.draw(g2d, arrow_x, arrow_y, path_height,path_width-arrow_x, line_height, line_width_end+arrow_x,degree);
     
