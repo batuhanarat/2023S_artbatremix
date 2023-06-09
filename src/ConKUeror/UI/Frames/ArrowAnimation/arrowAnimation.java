@@ -50,7 +50,7 @@ public class arrowAnimation {
      return distance;
 
     }
-    public void Animation(int territory_id,int i, ButtonHandler b,Graphics2D g2, int line_width_end) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
+    public void Animation(int territory_id,int i,Graphics2D g2, int line_width_end) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
         // should have a size of 42. The red line starting from the button territory_id
         // should end to its neighbor buttons territoryId.
     
@@ -65,6 +65,7 @@ public class arrowAnimation {
       System.out.println("Arrow X: " + arrow_x);
       System.out.println("Arrow Y: " + arrow_y);
       System.out.println("Line width end: " + line_width_end);
+      System.out.println("Territory id: " + territory_id);
 
 
            
@@ -74,7 +75,7 @@ public class arrowAnimation {
     System.out.println("Neighbor x: " + neighbor_x);
     System.out.println("Neighbor y: " + neighbor_y);
 
-        buttonHandler = b;
+        // buttonHandler = b;
         // arrow_x = x;
         // arrow_y = y;
         line_height  = line_h;

@@ -676,7 +676,7 @@ import ConKUeror.domain.controller.CardController;
             int territory_id = t.getId();
             float line_height = 0.4f;
             float path_height = 0.2f;
-            AnimationThread c = new AnimationThread(t, territoriesAvailableForAttack);
+        //  AnimationThread c = new AnimationThread(t, territoriesAvailableForAttack);
 
            
             for(int i: territoriesAvailableForAttack) {
@@ -684,7 +684,7 @@ import ConKUeror.domain.controller.CardController;
 
               arrowAnimation a = new arrowAnimation();
               line_width_end+=2;
-              a.Animation(territory_id,i,null,t.getGraphics(), line_width_end);
+              a.Animation(territory_id,i,t.getGraphics(), line_width_end);
                if(line_width_end> a.getDistance())
                line_width_end = 0;
 

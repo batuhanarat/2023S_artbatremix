@@ -26,7 +26,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ConKUeror.UI.Buttons.TerritoryButton;
+import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
 import ConKUeror.UI.Frames.ArrowAnimation.Arrow;
+import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
 import ConKUeror.UI.HelpScreen.HelpScreen;
 import ConKUeror.UI.Panels.InfoPanel;
 import ConKUeror.UI.Panels.PlayerInteractionPanel;
@@ -300,17 +302,28 @@ public void initGUI() throws IOException {
             
                         line_height = 0.5f;
                         path_height = 0.8f;
+          
             
-            
-            
-                        // switch (territory_id) {
-                        //     case 0:
-                        //     arrowAnimation a = new arrowAnimation();
-            
+                         switch (territory_id) {
+                             case 0:
+
+                             ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
+                             territoriesAvailableForAttack.add(1);
+                             arrowAnimation a = new arrowAnimation();
+                         a.Animation(territory_id,1, g2d, line_width_end);
+                         line_width_end+=2;
+                         if(a.getDistance()<line_width_end)
+                         line_width_end = 0;
+                         AnimationThread tr = new AnimationThread(territory_id, territoriesAvailableForAttack,mapPanel,g2d);
+                            
+                       
+                       
+                       
+                            }
                         // Integer [] array = new Integer[2];
                         // array[0] = 1;
                         // array[1] = 5;
-                        //     // a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
+                        //a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
                      
                         //     line_width_end+=2;
                         //     a.Animation(territory_id,array[0],null,g2d, line_width_end);
@@ -1130,42 +1143,44 @@ public void initGUI() throws IOException {
 
 
 
-Thread animationThread = new Thread(() -> {
+ Thread animationThread = new Thread(() -> {
 
-    // if(!pauseScreen.isVisible()) threader = true; 
- while (true) {
+    //   if(!pauseScreen.isVisible()) threader = true; 
+  while (true) {
+    
 
-        mapPanel.repaint();
+    
 
-      if(threadStarter == 0) {
-        try {
-            Thread.sleep(5000);
+         mapPanel.repaint();
+
+       if(threadStarter == 0) {
+         try {
+             Thread.sleep(5000);
             
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-      } else {
+         } catch (Exception e) {
+             // TODO: handle exception
+         }
+       } else {
 
 
-        try {
+         try {
       
-        } catch (Exception b) {
-            // TODO: handle exception
+         } catch (Exception b) {
+             // TODO: handle exception
            
-        }
+         }
 
         
-      }
+       }
 
 
+     }
+  });
 
-    }
- });
 
-
-//  public void stop() {
-//     threadStarter = false;
-//  }
+//   public void stop() {
+//      threadStarter = false;
+//   }
 
 public void createTerritoryButtons() {
 
@@ -1213,7 +1228,7 @@ public void createTerritoryButtons() {
                         System.out.println("Hello World");
                         if (t != null) {
 
-                            t.setGraphics(g2d);
+                            // t.getGraphics(g2d);
 
                             System.out.println(t.getId());
 
@@ -1226,21 +1241,28 @@ public void createTerritoryButtons() {
 
                         //   path_width_end = path_width;
                         //   line_width_end =  0;
-                          
+                        ArrayList<Integer> available = new ArrayList<Integer>();
+                        available.add(0);
+                            
+                    AnimationThread tr = new AnimationThread(t.getId(), available,mapPanel,g2d);
+                   
 
-                          try {
+                   
+
+                        
                                     
+try {
+    tr.start();
 
-
+} catch (Exception a) {
+    // TODO: handle exception
+}
                             
 
-                                    animationThread.start();
+                                  //  animationThread.start();
                                     
              
-                 
-                } catch (Exception v) {
-                    // TODO: handle exception
-                }
+              
                                     
                                   
                            
