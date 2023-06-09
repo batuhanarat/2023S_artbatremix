@@ -16,13 +16,14 @@ public class AnimationThread {
 ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();  
 JPanel map;
  Graphics2D g2d;
-
-    public AnimationThread(int territory_id, ArrayList<Integer> territoriesAvailableForAttack, JPanel map,Graphics2D g2d) {
+int line_width_end;
+    public AnimationThread(int territory_id, ArrayList<Integer> territoriesAvailableForAttack, JPanel map,Graphics2D g2d,int line_width_end) {
 
         this.territory_id = territory_id;
         this.territoriesAvailableForAttack = territoriesAvailableForAttack;
         this.map = map;
         this.g2d = g2d;
+        this.line_width_end = line_width_end;
     // animationThread.start();
     
     
@@ -50,16 +51,18 @@ JPanel map;
     
           System.out.println("Territory id: " + territory_id);
 
-    
+   
       for(int i: territoriesAvailableForAttack) {
     
         arrowAnimation a = new arrowAnimation();
-        line_width_end+=2;
-        a.Animation(territory_id,i,g2d, line_width_end);
-         if(line_width_end> a.getDistance())
-         line_width_end = 0;
+        // line_width_end+=2;
 
-       
+
+        a.Animation(territory_id,i,g2d, line_width_end);
+        //  if(line_width_end> a.getDistance())
+        //  line_width_end = 0;
+
+         map.repaint();
     
           if(threadStarter == 0) {
             try {

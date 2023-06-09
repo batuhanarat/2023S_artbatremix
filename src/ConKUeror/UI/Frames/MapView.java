@@ -70,6 +70,7 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
     PlayerPanel playerPanel;
     JPanel jPanel = new JPanel();
     JPanel jPanel2 =  new JPanel();
+    AnimationThread tr;
 
     JButton pauseAndResumeButton;
     
@@ -307,15 +308,24 @@ public void initGUI() throws IOException {
                          switch (territory_id) {
                              case 0:
 
-                             ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
+                              ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
                              territoriesAvailableForAttack.add(1);
-                             arrowAnimation a = new arrowAnimation();
-                         a.Animation(territory_id,1, g2d, line_width_end);
-                         line_width_end+=2;
-                         if(a.getDistance()<line_width_end)
-                         line_width_end = 0;
-                         AnimationThread tr = new AnimationThread(territory_id, territoriesAvailableForAttack,mapPanel,g2d);
-                            
+                              arrowAnimation a = new arrowAnimation();
+                        
+                        
+                              a.Animation(territory_id,1, g2d, line_width_end);
+                          line_width_end+=2;
+                          if(a.getDistance()<line_width_end)
+                          line_width_end = 0;
+
+
+
+                        
+                          tr = new AnimationThread(territory_id, territoriesAvailableForAttack,mapPanel,g2d,line_width_end);
+                           
+                          
+                          
+                          tr.start();
                        
                        
                        
@@ -1241,22 +1251,19 @@ public void createTerritoryButtons() {
 
                         //   path_width_end = path_width;
                         //   line_width_end =  0;
-                        ArrayList<Integer> available = new ArrayList<Integer>();
-                        available.add(0);
-                            
-                    AnimationThread tr = new AnimationThread(t.getId(), available,mapPanel,g2d);
+                      
                    
 
                    
 
                         
                                     
-try {
-    tr.start();
+// try {
+//     tr.start();
 
-} catch (Exception a) {
-    // TODO: handle exception
-}
+// } catch (Exception a) {
+//     // TODO: handle exception
+// }
                             
 
                                   //  animationThread.start();
