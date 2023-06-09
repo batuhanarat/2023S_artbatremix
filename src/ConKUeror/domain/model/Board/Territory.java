@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
 import ConKUeror.domain.model.Army.Army;
@@ -22,7 +23,7 @@ public class Territory implements Serializable {
     private Army army;
     private boolean isFree;
     private Color territoryColor;
-
+   private Graphics2D g2;
 
 
 
@@ -33,6 +34,16 @@ public class Territory implements Serializable {
         army = new Army();
 
     }
+
+    public void setGraphics(Graphics2D g) {
+     g2 = g;
+    }
+
+    public Graphics2D getGraphics() {
+        return g2;
+    }
+
+    
 
     public Player getOwner() {
         return owner;
@@ -102,6 +113,20 @@ public class Territory implements Serializable {
             {
                 territoriesAvailableForAttack.add(set.getKey());
                 arrowAnimation a = new arrowAnimation();
+                Integer[] b = new Integer[1];
+                b[0] = set.getKey();
+
+
+                
+               float line_height = 0.5f;
+               float path_height = 0.8f;
+
+          
+
+            //   float path_width_end = path_width;
+            //   int line_width_end =  0;
+
+                 a.Animation(id,b, id, totalArmyUnit, id, totalArmyUnit, id, null, null, null);
 
             //     MapConstants m = new MapConstants();
             //     m.fillCoordinates();
@@ -115,7 +140,6 @@ public class Territory implements Serializable {
             }
         }
 
-        // a.Animation(id, null, null, id, totalArmyUnit, id, totalArmyUnit, id, null, null, null);
 
     }
 

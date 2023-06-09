@@ -311,7 +311,7 @@ public void initGUI() throws IOException {
                         Integer [] array = new Integer[2];
                         array[0] = 1;
                         array[1] = 5;
-                            a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
+                            // a.Animation(territory_id,array,buttonHandler,arrow_x,arrow_y,line_height,path_width,path_height,g2d,line_width_ends,line_width_neighborTerritories);
                            
             
                                 break;
@@ -1212,6 +1212,7 @@ public void createTerritoryButtons() {
                         System.out.println("Hello World");
                         if (t != null) {
 
+                            t.setGraphics(g2d);
 
                             System.out.println(t.getId());
 
@@ -1222,8 +1223,8 @@ public void createTerritoryButtons() {
                           line_width =buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getY();
                           path_width = buttonHandler.getBuildMode().getCoordinateList().get(territory_id).getX();
 
-                          path_width_end = path_width;
-                          line_width_end =  0;
+                        //   path_width_end = path_width;
+                        //   line_width_end =  0;
                           
 
                           try {
