@@ -130,7 +130,7 @@ public MapView() throws IOException {
 
 
 public JPanel getMPanel() {
-    return mapPanel;
+   return mapPanel;
 }
 
 public void occupyTerritory() {
@@ -206,7 +206,7 @@ float path_width;
 float path_height;
 float line_height;
 float line_width;
-Graphics2D g2d;
+public Graphics2D g2d;
 float path_width_end;
 float path_height_end;
 float line_height_end;

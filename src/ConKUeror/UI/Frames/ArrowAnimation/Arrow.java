@@ -16,17 +16,12 @@ public class Arrow extends JPanel implements ArrowMovement {
     public Arrow() {
         
     }
-    @Override
-    public void paintComponent(Graphics g) {
-    super.paintComponent(g);
+    // @Override
+    // public void paintComponent(Graphics g) {
+    // super.paintComponent(g);
 
 
-
-
-
-
-
-    }
+    // }
 
 
 

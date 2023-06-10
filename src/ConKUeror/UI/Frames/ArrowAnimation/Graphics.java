@@ -10,6 +10,13 @@ public class Graphics {
 
     public Graphics2D getGraphics() throws IOException {
         MapView map = new MapView();
+        
+
+
+        return map.g2d;
+
+        
+        
 
 
     }
