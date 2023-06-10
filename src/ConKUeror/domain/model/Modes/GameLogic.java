@@ -426,6 +426,20 @@ import ConKUeror.domain.controller.MapListener;
 
 
 
+    Thread animationThread = new Thread(() -> {
+
+      //   if(!pauseScreen.isVisible()) threader = true; 
+    while (true) {
+      
+  
+      
+  
+  
+  
+  
+       }
+    });
+
     public void arrowAnimate(ArrayList<Integer> territoriesAvailableForAttack,Territory t) throws IOException {
 
       ArrowAnimationController ar = ArrowAnimationController.getInstance();
@@ -446,13 +460,16 @@ import ConKUeror.domain.controller.MapListener;
 
             
               arrowAnimation a = new arrowAnimation();
-              // a.Animation(territory_id,i, line_width_end);
+               a.Animation(territory_id,i,ar.getGraphics(), line_width_end);
               if(a.getDistance()<line_width_end) line_width_end = 0;
               line_width_end+=2;
 
 
             }
     }
+
+
+    
 
     public void addArmyCard() {
           CardController cc = CardController.getInstance();

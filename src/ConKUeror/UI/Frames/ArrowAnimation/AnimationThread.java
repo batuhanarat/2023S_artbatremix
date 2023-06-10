@@ -5,39 +5,82 @@ import java.awt.Graphics2D;
 import java.awt.List;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import ConKUeror.domain.controller.ArrowAnimationController;
 import ConKUeror.domain.model.Board.Territory;
 
 public class AnimationThread {
 
-  private ActionListener actionListener;
+  Territory t;
+  ArrayList<Integer> territoriesAvailableForAttack;
 
-//  int territory_id;
-// ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();  
-// JPanel map;
-//  Graphics2D g2d;
-// int line_width_end;
-    public  AnimationThread(ActionListener l) {
+ArrowAnimationController ar;
 
 
-actionListener = l;
-    //     this.territory_id = territory_id;
-    //     this.territoriesAvailableForAttack = territoriesAvailableForAttack;
-    //     this.map = map;
-    //     this.g2d = g2d;
-    //     this.line_width_end = line_width_end;
-    // // animationThread.start();
-    
-    
-    
+    public  AnimationThread(ArrayList<Integer> territoriesAvailableForAttack,Territory t,ArrowAnimationController ar) {
+
+    this.t = t;
+    this.territoriesAvailableForAttack = territoriesAvailableForAttack;
+    this.ar = ar;
     }
     
+
+    Thread animationThread = new Thread(() -> {
+
+      int line_width_end = 0;
+            int territory_id = t.getId();
+            float line_height = 0.4f;
+            float path_height = 0.2f;
+
+    while (true) {
+      
+          
+      for(int i: territoriesAvailableForAttack) {
+
+
+            
+        arrowAnimation a = new arrowAnimation();
+         try {
+          a.Animation(territory_id,i,ar.getGraphics(), line_width_end);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+        if(a.getDistance()<line_width_end) line_width_end = 0;
+        line_width_end+=2;
+
+
+      }
+      
+  
+  
+       
+  
+  
+       }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void start() {
      
-      AnimationThread thread = new AnimationThread(actionListener);
-      thread.start();
+      // AnimationThread thread = new AnimationThread(actionListener);
+      // thread.start();
 
     }
 
