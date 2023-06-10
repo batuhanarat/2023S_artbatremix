@@ -68,6 +68,7 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
     StartHandler startHandler;
     GameHandler gameHandler;
     PlayerPanel playerPanel;
+    GameLogic gameLogic;
     JPanel jPanel = new JPanel();
     JPanel jPanel2 =  new JPanel();
     AnimationThread tr;
@@ -102,6 +103,7 @@ public MapView() throws IOException {
     this.mapHandler = controller.giveMapHandler();
     this.buttonHandler = controller.giveButtonHandler();
     this.gameHandler = controller.giveGameHandler();
+    this.gameLogic = controller.getGameLogic();
      frame = this;
 
 
@@ -1585,6 +1587,8 @@ public void updateTerritory(int buttonID, int deployedArmy) {
     // TODO Auto-generated method stub
     TerritoryButton button = territoryButtonsList.get(buttonID);
     button.setArmyValue(deployedArmy);
+
+
 
 
 

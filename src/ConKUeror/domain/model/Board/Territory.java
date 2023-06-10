@@ -35,13 +35,7 @@ public class Territory implements Serializable {
 
     }
 
-    public void setGraphics(Graphics2D g) {
-     g2 = g;
-    }
-
-    public Graphics2D getGraphics() {
-        return g2;
-    }
+   
 
     
 
@@ -127,7 +121,7 @@ public class Territory implements Serializable {
             //   float path_width_end = path_width;
             //   int line_width_end =  0;
 
-                 a.Animation(id,b[0],this.getGraphics(), line_width_end);
+                //  a.Animation(id,b[0],this.getGraphics(), line_width_end);
 
             //     MapConstants m = new MapConstants();
             //     m.fillCoordinates();

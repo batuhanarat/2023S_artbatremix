@@ -21,7 +21,8 @@ import java.util.LinkedHashMap;
 import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
 import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
 import ConKUeror.domain.controller.CardController;
-  import ConKUeror.domain.controller.MapListener;
+import ConKUeror.domain.controller.MapHandler;
+import ConKUeror.domain.controller.MapListener;
   import ConKUeror.domain.controller.NextButtonListener;
   import ConKUeror.domain.controller.RollDieListener;
   import ConKUeror.domain.controller.TerritoryButtonListener;
@@ -44,6 +45,8 @@ import ConKUeror.domain.controller.CardController;
 
   public class GameLogic implements Serializable {
 
+
+    
     private Board board;
     private PlayerInventory p;
     public Territory inputTerritory;
@@ -87,6 +90,7 @@ import ConKUeror.domain.controller.CardController;
         this.startMod = sMode;
         this.board = board;
         rand = new Random();
+
 
       }
 
@@ -399,6 +403,7 @@ import ConKUeror.domain.controller.CardController;
           }
     }
 
+   
     public void useTerritoryCard() {
 
           playerInTurn.inv.useTerritoryCards();
@@ -550,8 +555,16 @@ import ConKUeror.domain.controller.CardController;
             memory[0]=null;
             memory[1]=null;
 
+
+
+
+
               setGameMode(GameMode.FORTIFY);
-          }
+          
+          
+          
+          
+            }
           else if (currentGameMode == GameMode.FORTIFY)
           {
             if(territoryOrArmyCard==1) {
@@ -684,7 +697,7 @@ import ConKUeror.domain.controller.CardController;
 
               arrowAnimation a = new arrowAnimation();
               line_width_end+=2;
-              a.Animation(territory_id,i,t.getGraphics(), line_width_end);
+              // a.Animation(territory_id,i,t.getGraphics(), line_width_end);
                if(line_width_end> a.getDistance())
                line_width_end = 0;
 
@@ -782,6 +795,10 @@ import ConKUeror.domain.controller.CardController;
 
 
 
+
+
+
+
       public int getAttackingArmyUnit() {
         return attackingArmyUnit;
       }
@@ -799,6 +816,7 @@ import ConKUeror.domain.controller.CardController;
           Army defendingArmy = memory[1].getArmy();
 
           playerInTurn.attack(attackingInfantries, attackingCavalries, attackingArtilleries, defendingArmy);
+
         }
         catch (NullPointerException e)
         {
