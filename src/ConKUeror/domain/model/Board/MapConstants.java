@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MapConstants implements Serializable {
-    private ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
+    public ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
 
 
 

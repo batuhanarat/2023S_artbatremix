@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -59,6 +60,8 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
     PlayerPanel playerPanel;
     JPanel jPanel = new JPanel();
     JPanel jPanel2 =  new JPanel();
+
+   public static Graphics2D g2d;
 
     JButton pauseAndResumeButton;
     JButton helpButton;
@@ -184,6 +187,7 @@ public void initGUI() throws IOException {
 
             @Override
             public void paintComponent(Graphics g) {
+                 g2d =  (Graphics2D) g;
                 super.paintComponent(g);
                 g.drawImage(backgroundImage, 0, 0, null); // draw the image
             }
@@ -265,7 +269,12 @@ public void createTerritoryButtons() {
                 if(e.getButton()== MouseEvent.BUTTON1) {
                     System.out.println("MOUSE CLICKED TO TERRITORY");
                     try {
-                        buttonHandler.matchButtonWithTerritory(button.getID());
+                        try {
+                            buttonHandler.matchButtonWithTerritory(button.getID());
+                        } catch (IOException e1) {
+                            // TODO Auto-generated catch block
+                            e1.printStackTrace();
+                        }
                     } catch (InterruptedException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();

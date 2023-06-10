@@ -1,6 +1,7 @@
 package ConKUeror.domain.controller;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class ButtonHandler{
 
 
 
-    public void matchButtonWithTerritory(int id) throws InterruptedException {
+    public void matchButtonWithTerritory(int id) throws InterruptedException, IOException {
           Territory t = Board.getTerritoryWithIndex(id);
           //System.out.println(t.getId());
           System.out.println(gMode.getGameMode());

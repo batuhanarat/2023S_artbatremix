@@ -11,12 +11,15 @@ import javax.swing.Timer;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 
 import ConKUeror.UI.Buttons.TerritoryButton;
+import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
+import ConKUeror.domain.controller.ArrowAnimationController;
 import ConKUeror.domain.controller.CardController;
 import ConKUeror.domain.controller.MapListener;
 import ConKUeror.domain.controller.NextButtonListener;
@@ -562,7 +565,7 @@ public void setGamePhaseIndex(int n){
 }
 
 
-    public void prepareGame(Territory t,GameMode gameMode) throws InterruptedException {
+    public void prepareGame(Territory t,GameMode gameMode) throws InterruptedException, IOException {
 
       PlayerExpert.setPlayerInTurn(playerInTurn);
       if (playerInTurn == null || playerInTurn.getType().equals("Real")) {
@@ -646,10 +649,21 @@ public void setGamePhaseIndex(int n){
            this.inputTerritory=t;
 
            //Map<Integer,Territory>  adjacentList = t.getAdjacencyList();
-           List<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
+           ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
            t.checkAvailableAttacks(territoriesAvailableForAttack);
            showAvailableAttacks(territoriesAvailableForAttack);
+
+
+
            addToMemory(t);
+
+
+           
+            ArrowAnimationController ar = ArrowAnimationController.getInstance();
+
+            AnimationThread thread = new AnimationThread(territoriesAvailableForAttack, t, ar);
+
+            thread.start();
           break;
 
         case FORTIFY:
