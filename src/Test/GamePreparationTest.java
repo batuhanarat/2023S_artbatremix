@@ -1,5 +1,7 @@
 package Test;
 
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,7 +32,7 @@ public class GamePreparationTest {
 
   
     @Test
-    public void testValidGamePreparationForBuildMode() throws InterruptedException {  // Tests that if game is built.
+    public void testValidGamePreparationForBuildMode() throws InterruptedException, IOException {  // Tests that if game is built.
           
     bMode = new BuildMode();                      
     sMode = new StartMode(bMode);
@@ -59,7 +61,7 @@ public class GamePreparationTest {
     }
 
     @Test
-    public void testValidGamePreparationForConnectionMode() throws InterruptedException { // Tests that if Connection Mode is valid
+    public void testValidGamePreparationForConnectionMode() throws InterruptedException, IOException { // Tests that if Connection Mode is valid
         Territory t = new Territory(0);
         // game.prepareGame(t,GameMode.BUILD);
         bMode = new BuildMode();
@@ -81,7 +83,7 @@ public class GamePreparationTest {
     }
 
     @Test
-    public void testValidGamePreparationForChanceCardMode() throws InterruptedException { // Tests that if ChanceCard mode is valid.
+    public void testValidGamePreparationForChanceCardMode() throws InterruptedException, IOException { // Tests that if ChanceCard mode is valid.
         Territory t = new Territory(0);
 
         bMode = new BuildMode();
@@ -107,7 +109,7 @@ public class GamePreparationTest {
     }
 
     @Test
-    public void testValidGamePreparationForDeploy() throws InterruptedException { // Tests that if Deploy is prepared.
+    public void testValidGamePreparationForDeploy() throws InterruptedException, IOException { // Tests that if Deploy is prepared.
         Territory t = new Territory(0);
 
         bMode = new BuildMode();
@@ -124,7 +126,7 @@ public class GamePreparationTest {
 
 
     @Test
-    public void testValidGamePreparationForAttack() throws InterruptedException { // Tests that Attack is prepared.
+    public void testValidGamePreparationForAttack() throws InterruptedException, IOException { // Tests that Attack is prepared.
         Territory t = new Territory(0);
 
         bMode = new BuildMode();
@@ -144,7 +146,7 @@ public class GamePreparationTest {
 
 
     @Test
-    public void testValidGamePreparationForFortify() throws InterruptedException { // Tests that Fortify is prepared.
+    public void testValidGamePreparationForFortify() throws InterruptedException, IOException { // Tests that Fortify is prepared.
         Territory t = new Territory(0);
 
         bMode = new BuildMode();
@@ -161,7 +163,7 @@ public class GamePreparationTest {
 
 
     @Test
-    public void testValidGamePreparationForArmyCard() throws InterruptedException { // Tests that ArmyCard is prepared.
+    public void testValidGamePreparationForArmyCard() throws InterruptedException, IOException { // Tests that ArmyCard is prepared.
         Territory t = new Territory(0);
 
         bMode = new BuildMode();
@@ -178,7 +180,7 @@ public class GamePreparationTest {
 
 
     @Test
-    public void testValidGamePreparationForTerritoryCard() throws InterruptedException { // Tests that if Territory Card Phase is prepared.
+    public void testValidGamePreparationForTerritoryCard() throws InterruptedException, IOException { // Tests that if Territory Card Phase is prepared.
 
 
         Territory t = new Territory(0);

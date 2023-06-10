@@ -11,6 +11,7 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -18,8 +19,10 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 
   import ConKUeror.UI.Buttons.TerritoryButton;
+import ConKUeror.UI.Frames.MapView;
 import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
 import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
+import ConKUeror.domain.controller.ArrowAnimationController;
 import ConKUeror.domain.controller.CardController;
 import ConKUeror.domain.controller.MapHandler;
 import ConKUeror.domain.controller.MapListener;
@@ -66,6 +69,8 @@ import ConKUeror.domain.controller.MapListener;
 
     DiceRoller diceRoller = DiceRoller.getDiceRollerInstance();
     private Player playerInTurn;
+
+    
 
     public boolean isPrepareTerritoryCalled = false;
     public boolean addToMemory_check = false;
@@ -421,6 +426,14 @@ import ConKUeror.domain.controller.MapListener;
 
 
 
+    public void arrowAnimate() throws IOException {
+
+      ArrowAnimationController ar = ArrowAnimationController.getInstance();
+      
+
+
+    }
+
     public void addArmyCard() {
           CardController cc = CardController.getInstance();
           int numberOfDraw = playerInTurn.getInventory().getDrawCardRequest();
@@ -584,7 +597,7 @@ import ConKUeror.domain.controller.MapListener;
 
   
 
-      public void prepareGame(Territory t,GameMode gameMode) throws InterruptedException {
+      public void prepareGame(Territory t,GameMode gameMode) throws InterruptedException, IOException {
 
 
 
@@ -695,11 +708,12 @@ import ConKUeror.domain.controller.MapListener;
             for(int i: territoriesAvailableForAttack) {
 
 
+            
               arrowAnimation a = new arrowAnimation();
+              // a.Animation(territory_id,i, line_width_end);
               line_width_end+=2;
-              // a.Animation(territory_id,i,t.getGraphics(), line_width_end);
-               if(line_width_end> a.getDistance())
-               line_width_end = 0;
+              if(a.getDistance()<line_width_end)
+              line_width_end = 0;
 
 
 

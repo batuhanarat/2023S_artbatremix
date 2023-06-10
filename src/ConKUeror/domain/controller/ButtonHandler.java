@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import ConKUeror.UI.Buttons.TerritoryButton;
 import ConKUeror.UI.Frames.MapView;
+import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
 import ConKUeror.UI.Panels.ArmyCardWindow;
 import ConKUeror.UI.Panels.ArmySelectionPanel;
 import ConKUeror.UI.Panels.AttackingArmyPanel;
@@ -65,8 +66,10 @@ public class ButtonHandler implements Serializable{
           //System.out.println(t.getId());
           System.out.println(gMode.getGameMode());
           System.out.println(t.getId());
-          gMode.prepareGame(t,gMode.getGameMode());
 
+        ;
+
+       
     }
 
     public void addToMemory(int id) {
@@ -225,6 +228,12 @@ if(FortifyMode.canFortify()) {
     public void attack()
     {
         gMode.setForAttack(attackingInfantries, attackingCavalries, attackingArtilleries);
+    
+        
+    
+    
+    
+    
     }
 
     public void deploy(){

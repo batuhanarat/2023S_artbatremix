@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import ConKUeror.domain.controller.ArrowAnimationController;
 import ConKUeror.domain.controller.BuildHandler;
 import ConKUeror.UI.HelpScreen.HelpScreen;
 import ConKUeror.domain.controller.BuildModeListener;
@@ -92,6 +93,9 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
             buildHandler.initializeGame();
                   try {
                     MapView map = new MapView();
+                    // ArrowAnimationController controller = new ArrowAnimationController(null, null, map);
+
+                    
                 } catch (IOException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();

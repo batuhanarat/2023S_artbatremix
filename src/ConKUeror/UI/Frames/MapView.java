@@ -128,6 +128,11 @@ public MapView() throws IOException {
 
 }
 
+
+public JPanel getMPanel() {
+    return mapPanel;
+}
+
 public void occupyTerritory() {
 
 }
@@ -207,6 +212,8 @@ float path_height_end;
 float line_height_end;
 
 
+
+ 
 public void animation(int territory_id,Integer [] neighborterritorId) { // REQUIRES: Territory_id should be between 0 and 41 && neighborterritorId
     // should have a size of 42. The red line starting from the button territory_id
     // should end to its neighbor buttons territoryId.
@@ -273,7 +280,10 @@ arrow.draw(g2d, arrow_x, arrow_y, path_height,path_width-arrow_x, line_height, l
 
 }
 
+// public Graphics2D getGraphics() {
 
+//     return
+// }
 
 
 
@@ -323,7 +333,7 @@ public void initGUI() throws IOException {
 
 
                         
-                          tr = new AnimationThread(territory_id, territoriesAvailableForAttack,mapPanel,g2d,line_width_end);
+                        //  tr = new AnimationThread(territory_id, territoriesAvailableForAttack,mapPanel,g2d,line_width_end);
                            
                           
                           

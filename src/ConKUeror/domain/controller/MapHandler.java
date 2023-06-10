@@ -19,6 +19,7 @@ public class MapHandler implements Serializable {
         if (instance == null) {
             instance = new MapHandler(_game, board);
         }
+        
         return instance;
     }
 

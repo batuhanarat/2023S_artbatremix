@@ -135,6 +135,8 @@ public class arrowAnimation {
     else if(distance_neighbor_y>0 && distance_neighbor_x>0)
     degree =180+ degree;
     
+
+    line_width_end+=2;
     System.out.println("Update Degree: "+ degree);
     if(line_width_end>distance_overall)
     line_width_end = 0;
