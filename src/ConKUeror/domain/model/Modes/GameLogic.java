@@ -426,12 +426,32 @@ import ConKUeror.domain.controller.MapListener;
 
 
 
-    public void arrowAnimate() throws IOException {
+    public void arrowAnimate(ArrayList<Integer> territoriesAvailableForAttack,Territory t) throws IOException {
 
       ArrowAnimationController ar = ArrowAnimationController.getInstance();
+
       
+            //Map<Integer,Territory>  adjacentList = t.getAdjacencyList();
+        
+
+            int line_width_end = 0;
+            int territory_id = t.getId();
+            float line_height = 0.4f;
+            float path_height = 0.2f;
+        //  AnimationThread c = new AnimationThread(t, territoriesAvailableForAttack);
+
+           
+            for(int i: territoriesAvailableForAttack) {
 
 
+            
+              arrowAnimation a = new arrowAnimation();
+              // a.Animation(territory_id,i, line_width_end);
+              if(a.getDistance()<line_width_end) line_width_end = 0;
+              line_width_end+=2;
+
+
+            }
     }
 
     public void addArmyCard() {

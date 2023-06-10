@@ -52,9 +52,18 @@ public void startAnimation() {
     animationThread.start();
 }
 
+public Graphics2D getGraphics() throws IOException {
+
+    MapView map = new MapView();
+    return map.g2d;
+}
+
 
 @Override
 public void actionPerformed(ActionEvent e) {
+
+
+
 
     // map.g2d
     
