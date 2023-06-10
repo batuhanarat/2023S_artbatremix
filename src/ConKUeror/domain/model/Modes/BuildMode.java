@@ -226,15 +226,21 @@ public Boolean validatePlayerNums(int totalPlayerNumber, int botPlayerNumber) {
 
     public void setColorList() {
 
-        Random random = new Random();
-        for(int i= 0 ; i<totalPlayerCount ; i++)  {
-            int red = random.nextInt(256); // Generate a random value between 0 (inclusive) and 256 (exclusive) for red
-            int green = random.nextInt(256); // Generate a random value between 0 (inclusive) and 256 (exclusive) for green
-            int blue = random.nextInt(256); // Generate a random value between 0 (inclusive) and 256 (exclusive) for blue
+        Color red = Color.red;
+        Color yellow = Color.YELLOW;
+        Color pink = Color.PINK;
+        Color orange = Color.ORANGE;
+        Color magenta = Color.MAGENTA;
+        Color mint = new Color(152, 251, 152);
+        playerColors.add(magenta);
+        playerColors.add(mint);
+        playerColors.add(red);
+        playerColors.add(yellow);
+        playerColors.add(pink);
+        playerColors.add(orange);
 
-            Color color =  new Color(red, green, blue);
-            playerColors.add(color);
-        }
+
+
         PlayerFactory factory = PlayerFactory.getInstance();
         factory.setColorList(playerColors);
 

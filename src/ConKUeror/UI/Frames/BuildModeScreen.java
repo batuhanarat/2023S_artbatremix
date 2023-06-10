@@ -24,9 +24,13 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
     private JButton confirmButton;
     private JButton startButton;
     private JButton helpButton;
+    private JLabel colorLabel;
+    private JComboBox colorBox;
+    private String selectedColor;
     private JComboBox<Integer> playerNumberBox;
     private JComboBox<Integer> botNumberBox;
-
+    private String[] colorNames = {"White", "Mint", "Magenta", "Yellow", "Orange", "Pink"};
+ 
     private Integer[] totalPlayerNumbers = {2, 3, 4, 5, 6};
     private Integer[] botPlayerNumbers = {1, 2, 3, 4, 5};
 
@@ -140,79 +144,97 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
     }
 
 
-
-
-
     public void initGUI() {
-        //@requires: (Precondition) BuildModeScreen
-        //@modifies:
-        //@effects: (Postcondition)
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    
         setTitle("Building Mode");
-
+    
         playerNumberLabel = new JLabel("Number of total players:");
         botNumberLabel = new JLabel("Number of bots among the players:");
-
+        colorLabel = new JLabel("Choose color:");
+    
         playerNumberBox = new JComboBox<>(totalPlayerNumbers);
         botNumberBox = new JComboBox<>(botPlayerNumbers);
-
+        colorBox = new JComboBox<>(colorNames);
+    
         confirmButton = new JButton("Confirm");
         helpButton = new JButton("Help");
         startButton = new JButton("Start");
-
-
+    
         buildModePanel = new JPanel(new GridBagLayout());
-
+    
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1;
         gbc.insets = new Insets(10, 10, 10, 10);
-
+    
         Font font = new Font("Arial", Font.PLAIN, 14);
         playerNumberLabel.setFont(font);
         botNumberLabel.setFont(font);
+        colorLabel.setFont(font);
         playerNumberBox.setFont(font);
         botNumberBox.setFont(font);
-
+        colorBox.setFont(font);
+    
         buildModePanel.add(playerNumberLabel, gbc);
-
+    
         gbc.gridx++;
         buildModePanel.add(playerNumberBox, gbc);
-
+    
         gbc.gridx = 0;
         gbc.gridy++;
         buildModePanel.add(botNumberLabel, gbc);
-
+    
         gbc.gridx++;
         buildModePanel.add(botNumberBox, gbc);
-
+    
+        gbc.gridx = 0;
+        gbc.gridy++;
+        buildModePanel.add(colorLabel, gbc);
+    
+        gbc.gridx++;
+        buildModePanel.add(colorBox, gbc);
+    
+        gbc.gridx = 0;
+        gbc.gridy++;
+    
+        gbc.gridx++;
+    
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
         buttonPanel.add(confirmButton);
         buttonPanel.add(helpButton);
         buttonPanel.add(startButton);
-
-
+    
         gbc.gridx = 0;
         gbc.gridy++;
         gbc.gridwidth = 3;
         gbc.anchor = GridBagConstraints.CENTER;
         buildModePanel.add(buttonPanel, gbc);
-
+    
         add(buildModePanel);
-        setSize(400, 200);
+        setSize(400, 300);  // I've increased the height to accommodate the new JComboBox
         setLocationRelativeTo(null);
         this.setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    
+        colorBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 selectedColor = (String) colorBox.getSelectedItem();
+                System.out.println("Choosen color/" + selectedColor);
+            }
+        });
     }
+    
 
-    public void updatePlayerCount(int playerCount) {
+
+       public void updatePlayerCount(int playerCount) {
         playerNumberBox.setSelectedItem(playerCount);
     }
     

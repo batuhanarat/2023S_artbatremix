@@ -1,10 +1,11 @@
 package ConKUeror.UI.HelpScreen;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CardsScreen extends JFrame {
     public CardsScreen() {
@@ -40,6 +41,57 @@ public class CardsScreen extends JFrame {
             new HelpScreen().setVisible(true);
         });
 
+        // Create a panel for the buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+
+        // Create the buttons
+        JButton armyCardButton = new JButton("Army Card");
+        JButton territoryCardButton = new JButton("Territory Card");
+        JButton chanceCardButton = new JButton("Chance Card");
+
+        // Set the button attributes
+        armyCardButton.setFont(new Font("Arial", Font.BOLD, 14));
+        territoryCardButton.setFont(new Font("Arial", Font.BOLD, 14));
+        chanceCardButton.setFont(new Font("Arial", Font.BOLD, 14));
+
+        armyCardButton.setBackground(new Color(41, 128, 185));
+        territoryCardButton.setBackground(new Color(39, 174, 96));
+        chanceCardButton.setBackground(new Color(142, 68, 173));
+
+        armyCardButton.setForeground(Color.WHITE);
+        territoryCardButton.setForeground(Color.WHITE);
+        chanceCardButton.setForeground(Color.WHITE);
+
+        // Add the buttons to the panel
+        buttonPanel.add(armyCardButton);
+        buttonPanel.add(territoryCardButton);
+        buttonPanel.add(chanceCardButton);
+
+        // Add action listener for the Army Card button
+        armyCardButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ArmyCardScreen().setVisible(true);
+                dispose();
+            }
+        });
+
+        // Add action listener for the Territory Card button
+        territoryCardButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new TerritoryCardScreen().setVisible(true);
+                dispose();
+            }
+        });
+
+        // Add action listener for the Chance Card button
+        chanceCardButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ChanceCardScreen().setVisible(true);
+                dispose();
+            }
+        });
+
         try {
             BufferedImage myPicture = ImageIO.read(getClass().getClassLoader().getResource("ConKUeror/UI/HelpScreen/HelpScreenImages/card.jpg"));
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
@@ -47,6 +99,7 @@ public class CardsScreen extends JFrame {
             picLabel.setLayout(new BorderLayout());
 
             picLabel.add(scrollPane, BorderLayout.CENTER);
+            picLabel.add(buttonPanel, BorderLayout.SOUTH);
             picLabel.add(returnButton, BorderLayout.NORTH);
 
             add(picLabel);

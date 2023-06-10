@@ -3,6 +3,8 @@ package ConKUeror.domain.controller;
 
 
 
+import java.awt.Color;
+
 import ConKUeror.domain.model.Board.Board;
 import ConKUeror.domain.model.Modes.BuildMode;
 import ConKUeror.domain.model.Modes.GameLogic;
@@ -42,6 +44,28 @@ private StartMode sMode;
 			}
 
 	}
+
+		public  Color handlePlayerColors(String colorName) {
+			colorName = colorName.toLowerCase();
+			switch (colorName) {
+				case "magenta":
+					return Color.MAGENTA;
+				case "white":
+					return Color.WHITE;
+				case "pink":
+					return Color.PINK;
+				case "yellow":
+					return Color.YELLOW;
+				case "minty":
+					return new Color(128, 0, 128); // Custom purple color
+				case "orange":
+					return Color.ORANGE;
+				default:
+					throw new IllegalArgumentException("Invalid color name: " + colorName);
+			}
+		}
+
+	
 
 
 	public void enterNameForRealPlayers(String name) {
