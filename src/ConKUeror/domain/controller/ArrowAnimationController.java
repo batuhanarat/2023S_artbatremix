@@ -30,7 +30,7 @@ public class ArrowAnimationController implements ActionListener {
     BuildMode buildMode;
     
 
-private ArrowAnimationController() throws IOException  {
+public ArrowAnimationController(GameLogic gmode, MapView map) throws IOException  {
 
     this.buildMode = new BuildMode();
     this.sMode = new StartMode(buildMode);
@@ -40,13 +40,27 @@ private ArrowAnimationController() throws IOException  {
 
 }
 
+
 public static ArrowAnimationController getInstance() throws IOException {
     if (instance == null) {
-        instance = new ArrowAnimationController();
+        // instance = new ArrowAnimationController();
     }
     return instance;
 }
 
+
+
+Thread controllerThread = new Thread(() -> {
+
+
+    while(true) {
+
+
+        
+    }
+
+
+});
 
 // public Graphics2D getGraphics() {
 // return MapView.g2d;
@@ -73,8 +87,9 @@ public Territory getTerritory(Territory t) {
 }
 
 
-public void gameLogicAttack() {
+public void getGameLogic(GameLogic g) {
 
+    gmode = g;
     
 
 }
@@ -98,6 +113,8 @@ public Graphics2D getGraphics() throws IOException {
     return m.g2d;
     
 }
+
+
 
 
 @Override

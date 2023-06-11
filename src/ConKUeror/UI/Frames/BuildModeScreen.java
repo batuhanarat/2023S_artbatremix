@@ -10,8 +10,11 @@ import javax.swing.*;
 
 import ConKUeror.domain.controller.ArrowAnimationController;
 import ConKUeror.domain.controller.BuildHandler;
+import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
 import ConKUeror.UI.HelpScreen.HelpScreen;
 import ConKUeror.domain.controller.BuildModeListener;
+import ConKUeror.domain.controller.HandlerFactory;
+import ConKUeror.domain.enums.GameMode;
 import ConKUeror.domain.model.Modes.BuildMode;
 import ConKUeror.domain.model.Modes.GameLogic;
 
@@ -81,6 +84,39 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
 
     }
 
+
+    HandlerFactory controller = HandlerFactory.getInstance();
+
+    MapView map;
+    
+//     Thread controllerThread = new Thread(() -> {
+
+
+//         while(true) {
+    
+//             //  System.out.println("test");
+
+            
+//     if(controller.getGameLogic().currentGameMode == GameMode.ATTACK) {
+
+
+//   AnimationThread t = new AnimationThread(controller.getGameLogic().territoriesAvailableForAttacks, controller.getGameLogic().ter,map);
+
+//   repaint();
+//     t.start();
+
+// }
+//     }
+
+
+
+           
+// });
+
+
+
+
+
     private class StartButtonHandler implements ActionListener {
 
         @Override
@@ -93,12 +129,18 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
             buildHandler.initalizeBots(getBotNumberComboboxValue());
             buildHandler.initializeGame();
                   try {
-                    MapView map = new MapView();
+                     map = new MapView();
+
+                 AnimationThread thread = new AnimationThread(null, null, map, null)
+                     AnimationThread.start();
                     
 
-                    ArrowAnimationController ar = ArrowAnimationController.getInstance();
 
-                    ar.getMapView(map);
+                    // ArrowAnimationController ar = ArrowAnimationController.getInstance();
+
+                    // ar.getMapView(map);
+
+
 
 
 

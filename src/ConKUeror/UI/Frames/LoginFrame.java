@@ -13,12 +13,14 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import ConKUeror.UI.Buttons.TerritoryButton;
+import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
 import ConKUeror.domain.controller.BuildHandler;
 import ConKUeror.domain.controller.GameHandler;
 import ConKUeror.domain.controller.HandlerFactory;
 import ConKUeror.domain.controller.SaveLoadHandler;
 import ConKUeror.domain.controller.StartHandler;
 import ConKUeror.domain.controller.TerritoryButtonListener;
+import ConKUeror.domain.enums.GameMode;
 import ConKUeror.domain.model.Board.Board;
 import ConKUeror.domain.model.Board.Territory;
 import ConKUeror.domain.model.Data.GameState;
@@ -39,6 +41,10 @@ public class LoginFrame extends JFrame {
     private List<Player> playerList;
     private List<Territory> territoryList;
     private static Map<Integer, Territory> territories= new HashMap<>();
+
+    private MapView map;
+    private HandlerFactory controller = HandlerFactory.getInstance();
+
 
 
     private List<TerritoryButtonListener> territoryButtonListeners = new ArrayList<>();
@@ -122,11 +128,14 @@ public class LoginFrame extends JFrame {
     }
 
     private void startNewGame() {
-        HandlerFactory controller = HandlerFactory.getInstance();
         BuildHandler buildHandler = controller.giveBuildHandler();
         BuildModeScreen buildModeScreen = new BuildModeScreen(buildHandler);
+
+
         this.dispose();
     }
+
+
 
 
 
@@ -206,9 +215,17 @@ public class LoginFrame extends JFrame {
         controller.getGameLogic().setGamePhaseIndex(gameState.getPhaseIndex());
         controller.getGameLogic().setGameMode(  gameState.getGameMode());
 
+
+       
+
         // Start the game
         try {
-            MapView map = new MapView();
+             map = new MapView();
+           
+
+            
+
+
            for(PlayerData playerData: loadedPlayerDataList){
             Player p2 = playerData.getPlayer();
             List<Territory> owned = p2.getInventory().getOwnedTerritories();

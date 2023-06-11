@@ -573,6 +573,8 @@ public void setGamePhaseIndex(int n){
 
 }
 
+public ArrayList<Integer> territoriesAvailableForAttacks = new ArrayList<Integer>();
+public Territory ter;
 
     public void prepareGame(Territory t,GameMode gameMode) throws InterruptedException, IOException {
 
@@ -659,16 +661,18 @@ public void setGamePhaseIndex(int n){
 
            //Map<Integer,Territory>  adjacentList = t.getAdjacencyList();
            ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
+
            t.checkAvailableAttacks(territoriesAvailableForAttack);
            showAvailableAttacks(territoriesAvailableForAttack);
 
-
+territoriesAvailableForAttacks = territoriesAvailableForAttack;
+ter = t;
 
            addToMemory(t);
 
 
            
-             ArrowAnimationController ar = ArrowAnimationController.getInstance();
+            //  ArrowAnimationController ar = ArrowAnimationController.getInstance();
 
             //  ar.getTerritoriesAvailableForAttack(territoriesAvailableForAttack);
 
@@ -676,10 +680,10 @@ public void setGamePhaseIndex(int n){
 
 
 
-             AnimationThread thread = new AnimationThread(territoriesAvailableForAttack, t, ar);
+            //  AnimationThread thread = new AnimationThread(territoriesAvailableForAttack, t, ar);
 
 
-             thread.start();
+            //  thread.start();
 
             
           break;

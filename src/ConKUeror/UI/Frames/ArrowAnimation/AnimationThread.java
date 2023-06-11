@@ -11,21 +11,27 @@ import javax.swing.JPanel;
 
 import ConKUeror.UI.Frames.MapView;
 import ConKUeror.domain.controller.ArrowAnimationController;
+import ConKUeror.domain.enums.GameMode;
 import ConKUeror.domain.model.Board.Territory;
+import ConKUeror.domain.model.Modes.GameLogic;
 
 public class AnimationThread {
 
   Territory t;
   ArrayList<Integer> territoriesAvailableForAttack;
+  MapView map;
 
 ArrowAnimationController ar;
+GameLogic gmode;
 
 
-    public AnimationThread(ArrayList<Integer> territoriesAvailableForAttack,Territory t,ArrowAnimationController ar) {
+    public AnimationThread(MapView m,GameLogic gmode) {
 
     this.t = t;
     this.territoriesAvailableForAttack = territoriesAvailableForAttack;
-    this.ar = ar;
+    map = m;
+    this.gmode = gmode;
+    // this.ar = ar;
     }
     
   
@@ -40,21 +46,24 @@ ArrowAnimationController ar;
     while (true) {
       
           
+
+        if(gmode.currentGameMode == GameMode.ATTACK) {
       for(int i: territoriesAvailableForAttack) {
 
 
             
         arrowAnimation a = new arrowAnimation();
          try {
-          a.Animation(territory_id,i,ar.getGraphics(), line_width_end);
+          a.Animation(territory_id,i,map.g2d, line_width_end);
 
-          MapView.mapPanell.repaint();
+          
+          map.mapPanel.repaint();
           
           Thread.sleep(100);
 
           if(a.getDistance()<line_width_end) line_width_end = 0;
         line_width_end+=2;
-        } catch (IOException | InterruptedException e) {
+        } catch (  InterruptedException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
         }
@@ -66,6 +75,7 @@ ArrowAnimationController ar;
       
   
   
+    }
        
   
   
