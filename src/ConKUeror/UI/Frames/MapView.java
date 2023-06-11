@@ -63,6 +63,7 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
 
    public static Graphics2D g2d;
 
+   public static JPanel mapPanell;
     JButton pauseAndResumeButton;
     JButton helpButton;
     GameState gameState;
@@ -79,7 +80,7 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
 
 
     public BufferedImage image;
-    JPanel mapPanel;
+   public JPanel mapPanel;
     String armyNum =String.valueOf(0);
     Boolean disable = false;
     int disable_Num = 0;
@@ -94,6 +95,9 @@ public MapView() throws IOException {
     this.mapHandler = controller.giveMapHandler();
     this.buttonHandler = controller.giveButtonHandler();
     this.gameHandler = controller.giveGameHandler();
+
+
+    
      frame = this;
 
 
@@ -228,6 +232,8 @@ public void initGUI() throws IOException {
         add(mapPanel, BorderLayout.CENTER);
         add(infoPanel, BorderLayout.EAST);
         setResizable(false);
+        
+        mapPanell = mapPanel;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -271,6 +277,8 @@ public void createTerritoryButtons() {
                     try {
                         try {
                             buttonHandler.matchButtonWithTerritory(button.getID());
+                            
+                            
                         } catch (IOException e1) {
                             // TODO Auto-generated catch block
                             e1.printStackTrace();

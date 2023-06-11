@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import ConKUeror.UI.Frames.MapView;
 import ConKUeror.domain.controller.ArrowAnimationController;
 import ConKUeror.domain.model.Board.Territory;
 
@@ -46,13 +47,20 @@ ArrowAnimationController ar;
         arrowAnimation a = new arrowAnimation();
          try {
           a.Animation(territory_id,i,ar.getGraphics(), line_width_end);
-        } catch (IOException e) {
+
+          MapView.mapPanell.repaint();
+          
+          Thread.sleep(100);
+
+          if(a.getDistance()<line_width_end) line_width_end = 0;
+        line_width_end+=2;
+        } catch (IOException | InterruptedException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
         }
-        if(a.getDistance()<line_width_end) line_width_end = 0;
-        line_width_end+=2;
+        
 
+          
 
       }
       

@@ -546,6 +546,15 @@ public void setGamePhaseIndex(int n){
           memory[0]=null;
           memory[1]=null;
 
+
+       
+
+
+
+
+
+          
+
             setGameMode(GameMode.FORTIFY);
         }
         else if (currentGameMode == GameMode.FORTIFY)
@@ -659,11 +668,20 @@ public void setGamePhaseIndex(int n){
 
 
            
-            ArrowAnimationController ar = ArrowAnimationController.getInstance();
+             ArrowAnimationController ar = ArrowAnimationController.getInstance();
 
-            AnimationThread thread = new AnimationThread(territoriesAvailableForAttack, t, ar);
+            //  ar.getTerritoriesAvailableForAttack(territoriesAvailableForAttack);
 
-            thread.start();
+            //  ar.getTerritory(t);
+
+
+
+             AnimationThread thread = new AnimationThread(territoriesAvailableForAttack, t, ar);
+
+
+             thread.start();
+
+            
           break;
 
         case FORTIFY:

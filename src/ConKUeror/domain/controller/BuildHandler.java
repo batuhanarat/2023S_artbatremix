@@ -14,7 +14,7 @@ public class BuildHandler {
 private static BuildHandler instance;
 private Boolean isFirstConfirmClick = true;
 private BuildMode buildMode;
-private Board board;
+public Board board;
 private GameLogic gamelogic;
 private StartMode sMode;
 

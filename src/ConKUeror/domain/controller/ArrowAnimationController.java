@@ -4,11 +4,15 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
 
 import ConKUeror.UI.Frames.MapView;
 import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
 import ConKUeror.UI.Frames.ArrowAnimation.arrowAnimation;
 import ConKUeror.domain.model.Board.Board;
+import ConKUeror.domain.model.Board.Territory;
 import ConKUeror.domain.model.Modes.BuildMode;
 import ConKUeror.domain.model.Modes.GameLogic;
 import ConKUeror.domain.model.Modes.StartMode;
@@ -17,7 +21,7 @@ public class ArrowAnimationController implements ActionListener {
     
     private AnimationThread animationThread;
     private arrowAnimation arrowAnimation;
-    private MapView map;
+    private MapView m;
     private GameLogic gmode;
     private static ArrowAnimationController instance;
 
@@ -53,11 +57,46 @@ public void startAnimation() {
     animationThread.start();
 }
 
+
+public ArrayList<Integer> getTerritoriesAvailableForAttack(ArrayList<Integer> t) {
+
+
+    return t;
+
+}
+
+public Territory getTerritory(Territory t) {
+
+
+    return t;
+
+}
+
+
+public void gameLogicAttack() {
+
+    
+
+}
+
+public void getMapView(MapView m) {
+    this.m = m;
+
+}
+
+public JPanel getMapPanel() {
+
+    return m.mapPanel;
+}
+
+
+
+
 public Graphics2D getGraphics() throws IOException {
 
     
+    return m.g2d;
     
-    return MapView.g2d;
 }
 
 
