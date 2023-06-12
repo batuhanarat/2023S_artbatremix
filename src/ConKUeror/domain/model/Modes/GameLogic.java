@@ -19,6 +19,7 @@ import java.util.LinkedHashMap;
 
 import ConKUeror.UI.Buttons.TerritoryButton;
 import ConKUeror.UI.Panels.ChanceCardWindow;
+import ConKUeror.domain.controller.ArrowAnimationListener;
 import ConKUeror.domain.controller.CardController;
 import ConKUeror.domain.controller.ChanceObserverListener;
 import ConKUeror.domain.controller.EndOfTheGameListener;
@@ -77,6 +78,8 @@ public class GameLogic {
   private int cardCounter = 0;
   private int armyCardCounter = 0;
   private CardController cardController;
+
+  private ArrowAnimationListener arrowAnimationListener;
 
   private static final int UNOCCUPIED_FIXED_SIZE = 42;
 
@@ -643,9 +646,10 @@ public class GameLogic {
           this.inputTerritory = t;
 
           // Map<Integer,Territory> adjacentList = t.getAdjacencyList();
-          List<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
+          ArrayList<Integer> territoriesAvailableForAttack = new ArrayList<Integer>();
           t.checkAvailableAttacks(territoriesAvailableForAttack);
-          showAvailableAttacks(territoriesAvailableForAttack);
+          publishDrawArrowEvent(t, territoriesAvailableForAttack);
+          //showAvailableAttacks(territoriesAvailableForAttack);
           addToMemory(t);
           break;
 
@@ -773,5 +777,15 @@ public class GameLogic {
   public void publishEndOfTheGameEvent(Player player) throws IOException {
     endScreenListener.resolveGame(player);
   }
+
+public void addArrowAnimationListener(ArrowAnimationListener arrowAnimationListener)
+{
+  this.arrowAnimationListener = arrowAnimationListener;
+}
+
+public void publishDrawArrowEvent(Territory t, ArrayList<Integer> territoriesAvailableForAttack)
+{
+  arrowAnimationListener.drawArrows(t, territoriesAvailableForAttack);
+}
 
 }

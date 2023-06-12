@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
@@ -27,6 +28,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ConKUeror.domain.model.Board.AnimationHandler;
 import ConKUeror.UI.Buttons.TerritoryButton;
+import ConKUeror.UI.Frames.ArrowAnimation.AnimationThread;
 import ConKUeror.UI.HelpScreen.HelpScreen;
 import ConKUeror.UI.Panels.AttackResultPanel;
 import ConKUeror.UI.Panels.InfoPanel;
@@ -37,6 +39,7 @@ import ConKUeror.domain.controller.ButtonHandler;
 import ConKUeror.domain.controller.ChanceObserverListener;
 import ConKUeror.domain.controller.GameHandler;
 import ConKUeror.domain.controller.AnimationMapListener;
+import ConKUeror.domain.controller.ArrowAnimationListener;
 import ConKUeror.domain.controller.HandlerFactory;
 import ConKUeror.domain.controller.IUIRefreshListener;
 import ConKUeror.domain.controller.MapHandler;
@@ -60,9 +63,10 @@ import java.util.List;
 
 public class MapView extends JFrame
         implements MapListener, TerritoryButtonListener, RollDieListener, IUIRefreshListener, AnimationMapListener,
-        EndOfTheGameListener, ChanceObserverListener {
+        EndOfTheGameListener, ChanceObserverListener, ArrowAnimationListener {
     private AnimationHandler animationHandler;
     private DiceAnimation diceAnimation;
+    private Graphics2D g2d;
 
     MapHandler mapHandler;
     ButtonHandler buttonHandler;
@@ -198,6 +202,7 @@ public class MapView extends JFrame
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(backgroundImage, 0, 0, null); // draw the image
+                g2d = (Graphics2D) g;
             }
         };
         mapPanel.setOpaque(false);
@@ -568,6 +573,28 @@ public class MapView extends JFrame
         System.out.println(armyUnit);
         revalidate();
         repaint();
+    }
+
+    @Override
+    public void drawArrows(Territory t, ArrayList<Integer> territoriesAvailableForAttack)
+    {
+        // TODO Auto-generated method stub
+
+
+        AnimationThread animate = new AnimationThread(territoriesAvailableForAttack, t, mapPanel, g2d);
+
+
+
+
+
+
+
+       
+    }
+
+    public void addAsArrowAnimationListener()
+    {
+        buttonHandler.addAsArrowAnimationListener(this);
     }
 
 }
