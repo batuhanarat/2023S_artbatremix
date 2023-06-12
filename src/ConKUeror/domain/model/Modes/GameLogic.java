@@ -43,7 +43,7 @@ import ConKUeror.domain.model.Player.Player;
 import ConKUeror.domain.model.Player.PlayerExpert;
 import ConKUeror.domain.model.Player.PlayerInventory;
 
-public class GameLogic {
+public class GameLogic implements Serializable {
 
   private Board board;
   private PlayerInventory p;
@@ -441,10 +441,12 @@ public class GameLogic {
     playerInTurn.inv.useChanceCard();
   }
 
-  public void addCOListener(ChanceObserverListener coListener) {
-        for (Player p : PlayerExpert.getPlayersList()) {
-            p.getInventory().addCOListener(coListener);
-        }
+  public void addCOListener(ChanceObserverListener coListener, Player p1) {
+        // for (Player p : PlayerExpert.getPlayersList()) {
+        //     p.getInventory().addCOListener(coListener);
+        // }
+        // PlayerInventory inv1 = p1.getInventory();
+        // inv1.addCOListener(coListener);
   }
 
   public void increasePhaseIndex() {

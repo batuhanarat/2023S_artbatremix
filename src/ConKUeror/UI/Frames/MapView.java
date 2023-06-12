@@ -115,7 +115,7 @@ public class MapView extends JFrame
         addMapFrameAsListener();
         addMapFrameAsListenertoListenTerrittoryButtonInteraction();
         addMapFrameAsListenerForRollEvent();
-        addMapFrameToChanceCards();
+        // addMapFrameToChanceCards();
 
         addAsEndScreenListener();
 
@@ -557,17 +557,17 @@ public class MapView extends JFrame
 
     @Override
     public void setTerritoryUI(int buttonID, int armyUnit, Color color, int territoryArmy) {
-        // TODO Auto-generated method stub
-        TerritoryButton button = territoryButtonsList.get(buttonID);
+        //  TODO Auto-generated method stub
+         TerritoryButton button = territoryButtonsList.get(buttonID);
         button.setColor(color);
-        Font labelFont = new Font("Arial", Font.PLAIN, 11);
+         Font labelFont = new Font("Arial", Font.PLAIN, 11);
         button.setFont(labelFont);
-        button.setArmyValue(territoryArmy);
-        System.out.print(territoryArmy);
+         button.setArmyValue(territoryArmy);
+         System.out.print(territoryArmy);
 
-        System.out.println(armyUnit);
-        revalidate();
-        repaint();
+         System.out.println(armyUnit);
+         revalidate();
+         repaint();
     }
 
 }

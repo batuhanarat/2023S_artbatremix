@@ -57,7 +57,8 @@ public class SaveLoadController implements Serializable {
             generateTerritoryDatas(territoryMap);
             HandlerFactory controller = HandlerFactory.getInstance();
             GameLogic game =  controller.getGameLogic();
-            gameState = new GameState(playerDataList,territoryDataList,Board.getContinents(), game.getGameMode(),game.getGamePhaseAsIndex());
+            int phase_index = game.getGamePhaseAsIndex();
+            gameState = new GameState(playerDataList,territoryDataList,Board.getContinents(),phase_index );
             saveLoadService = new TextFileServiceAdapter();
 			saveLoadService.save(gameState);
 

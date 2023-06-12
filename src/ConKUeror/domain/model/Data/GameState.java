@@ -36,11 +36,11 @@ public class GameState implements Serializable{
 
  //private static Map<Integer, Territory> territories= new HashMap<>();
 
-    public GameState(List<PlayerData> playerDataList, List<TerritoryData> territoryDataList,List<Continent> continents ,GameMode mode,int index){
+    public GameState(List<PlayerData> playerDataList, List<TerritoryData> territoryDataList,List<Continent> continents ,int index){
         this.playerDataList = playerDataList;
         this.territoryDataList = territoryDataList;
         this.continents = continents;
-        this.gameMode = mode;
+        //this.gameMode = mode;
         this.phaseIndex= index;
         this.playerInTurn = PlayerExpert.getPlayerInTurn();
         this.orderedList = PlayerExpert.getPlayersList();

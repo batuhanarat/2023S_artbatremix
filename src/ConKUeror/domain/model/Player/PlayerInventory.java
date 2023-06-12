@@ -12,6 +12,7 @@ import java.util.Random;
 
 import ConKUeror.domain.model.Board.ArmyCard.ArmyType;
 import ConKUeror.domain.model.Board.ChanceCard.ChanceType;
+import ConKUeror.domain.model.Modes.GameLogic;
 import ConKUeror.UI.Panels.ChanceCardWindow;
 import ConKUeror.domain.controller.ChanceObserverListener;
 import ConKUeror.domain.controller.HandlerFactory;
@@ -28,7 +29,7 @@ public class PlayerInventory implements Serializable {
     private int artilleryCount; // card
     private Army army;
     private List<ArmyCard> armyCards = new ArrayList<>();
-
+    GameLogic gMode = HandlerFactory.getInstance().getGameLogic();
     private List<Territory> ownedTerritories;
     private List<Continent> ownedContinents = new ArrayList<>();
     private int armies;
@@ -39,7 +40,7 @@ public class PlayerInventory implements Serializable {
     private static int MAX_ARMY_CARD_PER_TURN = 1;
     private static int CLICKED_ARMY_BUTTON = 0;
     private static int MAX_TERR_CARD = 1;
-private static int MAX_CHANCE_CARD = 1;
+    private static int MAX_CHANCE_CARD = 1;
 
     private static final List<String> NORTH_AMERICA = Arrays.asList("Territory Card 0", "Territory Card 1",
             "Territory Card 2", "Territory Card 5", "Territory Card 3", "Territory Card 4", "Territory Card 6",
@@ -589,7 +590,8 @@ private static int MAX_CHANCE_CARD = 1;
         System.out.println("COUP RUNNED?");
         Territory t = Board.getCurrentTerritory();
         t.setOwner(p);
-        setTerritoryUIforObserver(t.getId(), p.getInventory().getTotalArmy(), p.getColor(), t.getTotalUnit());
+       // gMode.setTerritoryInfo(t.getId(), p.getInventory().getTotalArmy(), p.getColor(), t.getTotalUnit());
+        // setTerritoryUIforObserver(t.getId(), p.getInventory().getTotalArmy(), p.getColor(), t.getTotalUnit());
     }
 
     public void useSecretWeapon(Player p) {
@@ -652,7 +654,8 @@ private static int MAX_CHANCE_CARD = 1;
             t.getArmy().setTotalArmyUnit(t.getArmy().getTotalArmyUnit() - half);
 
         }
-         setTerritoryUIforObserver(t.getId(), p.getInventory().getTotalArmy(), p.getColor(), t.getTotalUnit());
+       // gMode.setTerritoryInfo(t.getId(), p.getInventory().getTotalArmy(), p.getColor(), t.getTotalUnit());
+        // setTerritoryUIforObserver(t.getId(), p.getInventory().getTotalArmy(), p.getColor(), t.getTotalUnit());
         p.getInventory().setChanceCardRequest(0);
         chanceCards.remove(0);
         

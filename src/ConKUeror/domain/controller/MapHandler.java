@@ -1,10 +1,13 @@
 package ConKUeror.domain.controller;
 
 import java.awt.Color;
+import java.util.List;
 import java.io.Serializable;
 
 import ConKUeror.domain.model.Board.Board;
 import ConKUeror.domain.model.Modes.GameLogic;
+import ConKUeror.domain.model.Player.Player;
+import ConKUeror.domain.model.Player.PlayerExpert;
 
 public class MapHandler implements Serializable {
     GameLogic game;
@@ -30,7 +33,11 @@ public class MapHandler implements Serializable {
     }
 
     public void registerAsChanceObserver(ChanceObserverListener coListener) {
-        game.addCOListener(coListener);
+        // List<Player> listOfPlayers = PlayerExpert.getPlayersList();
+        // for (Player p : listOfPlayers) {
+        //     game.addCOListener(coListener, p);
+        // }
+       // game.addCOListener(coListener);
     }
 
 

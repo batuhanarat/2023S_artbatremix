@@ -147,11 +147,11 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
         //@requires: (Precondition) BuildModeScreen
         //@modifies:
         //@effects: (Postcondition)
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
 
         setTitle("Building Mode");
 
