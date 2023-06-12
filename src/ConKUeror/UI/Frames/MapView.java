@@ -88,7 +88,7 @@ public class MapView extends JFrame
     List<TerritoryButton> buttonHistory = new ArrayList<TerritoryButton>();
 
     // hllo
-    public BufferedImage image;
+    public transient BufferedImage image;
 
     JPanel mapPanel;
     String armyNum = String.valueOf(0);
@@ -192,7 +192,7 @@ public class MapView extends JFrame
         setSize((int) (1.20 * image.getWidth()), image.getHeight());
         System.out.println("GETWIDTH AND GETHEIGHT IS !!!!!! " + image.getWidth() + " HEYE" + image.getHeight());
         mapPanel = new JPanel() {
-            BufferedImage backgroundImage = image;
+            transient BufferedImage backgroundImage = image;
 
             @Override
             public void paintComponent(Graphics g) {

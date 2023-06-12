@@ -1,72 +1,60 @@
 package ConKUeror.UI.Buttons;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.io.Serializable;
 
 import javax.swing.JButton;
-// will be used to increase the graphics level. now it is not necessary
+
+import com.google.gson.annotations.SerializedName;
 
 import ConKUeror.domain.controller.ButtonHandler;
 import ConKUeror.domain.controller.HandlerFactory;
 
-
-
-public class TerritoryButton extends JButton {
-
-    private int x;
-    private int y;
+public class TerritoryButton extends JButton implements Serializable {
+    
+    @SerializedName("id")
     private int id;
-    private Color defaultColor;
 
+    @SerializedName("x_coordinate")
+    private int x;
 
-    public TerritoryButton(int x, int y,int id ) {
+    @SerializedName("y_coordinate")
+    private int y;
+
+    private transient Color defaultColor;
+
+    public TerritoryButton(int x, int y, int id) {
         super();
-           this.id = id;
-           this.x= x;
-           this.y = y;
-           this.defaultColor = getBackground();
-
-
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.defaultColor = getBackground();
     }
-    public TerritoryButton(Color color,int x, int y,int id ) {
-        super();
-           this.id = id;
-           this.x= x;
-           this.y = y;
-           setBackground(color);
-
-
-    }
-
+    
     public void changeColor() {
         setBackground(Color.GREEN);
     }
 
     public void setColor(Color color) {
-
         setBackground(color);
-        this.setVisible(true);
+        setVisible(true);
         repaint();
         revalidate();
     }
 
     public void resetColor() {
-
         ButtonHandler buttonHandler = HandlerFactory.getInstance().giveButtonHandler();
-        Color color =  buttonHandler.getPlayerColor();
+        Color color = buttonHandler.getPlayerColor();
         setBackground(color);
-
     }
 
     public void setArmyValue(int number) {
-
-      String text =  Integer.toString(number);
-      setText(text);
-
+        String text = Integer.toString(number);
+        setText(text);
     }
 
     public int getID() {
@@ -79,10 +67,5 @@ public class TerritoryButton extends JButton {
 
     public int getY() {
         return y;
-
     }
-
-
-
-
 }

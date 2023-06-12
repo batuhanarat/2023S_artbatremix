@@ -1,6 +1,7 @@
 package ConKUeror.domain.model.Modes;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +15,7 @@ import ConKUeror.domain.model.Player.Player;
 import ConKUeror.domain.model.Player.PlayerExpert;
 import ConKUeror.domain.model.Player.PlayerFactory;
 
-public class BuildMode {
+public class BuildMode implements Serializable {
 
 private ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
 // private List<Player> players = new ArrayList<Player>();
@@ -26,7 +27,7 @@ private int playerIndexIterator;
 PlayerFactory playerFactory;
 PlayerExpert playerExpert;
 private static boolean canStart = false;
-private List<Color> playerColors = new ArrayList<Color>();
+private transient List<Color> playerColors = new ArrayList<Color>();
 
 
 public static final Integer[] PLAYER_COUNT_VALUES = {2, 3, 4, 5, 6};

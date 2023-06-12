@@ -3,6 +3,7 @@ package ConKUeror.domain.model.Player;
 
 import java.util.List;
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import ConKUeror.domain.model.Player.Strategies.ComputerPlayer.ComputerPlayerAttack;
@@ -12,14 +13,14 @@ import ConKUeror.domain.model.Player.Strategies.RealPlayer.RealPlayerAttack;
 import ConKUeror.domain.model.Player.Strategies.RealPlayer.RealPlayerDeploy;
 import ConKUeror.domain.model.Player.Strategies.RealPlayer.RealPlayerFortify;
 
-public class PlayerFactory {
+public class PlayerFactory implements Serializable {
 
     //PlayerFactory is implemented with singleton pattern.
 
     private static PlayerFactory instance;
     private PlayerFactory() {};
     private List<String> playerNames = new ArrayList<String>();
-    private List<Color> playerColors;
+    private transient List<Color> playerColors;
     private int colorIndex= 0;
 
     public static PlayerFactory getInstance() {

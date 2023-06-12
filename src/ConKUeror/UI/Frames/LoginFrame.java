@@ -115,8 +115,10 @@ public class LoginFrame extends JFrame implements Serializable{
         
         loadGameButtonMongo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
-
+                SaveLoadController saveLoadController = SaveLoadController.getInstance();
+                saveLoadController.handleLoad(1);
+                gameState = saveLoadController.getLoadedGameState();
+                startLoadedGame(gameState.getPlayerData(), gameState.getTerritoryData());
             }
         });
 

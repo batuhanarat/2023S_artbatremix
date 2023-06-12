@@ -35,7 +35,7 @@ public class Die  implements Serializable{
 
     public void rollDie()
     {
-        faceValue =  random.nextInt(1,7);
+        faceValue =  random.nextInt(7);
     }
 
     public int getFaceValue() {

@@ -22,7 +22,7 @@ public class Territory implements Serializable {
     private Army army;
     private boolean isFree;
     private boolean isDeleted;
-    private Color territoryColor;
+    private transient Color territoryColor;
 
 
 

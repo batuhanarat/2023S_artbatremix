@@ -1,6 +1,7 @@
 package ConKUeror.domain.controller;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +66,16 @@ public class SaveLoadController implements Serializable {
 
 
 		case 1:
+			generatePlayerDatas( playerList);
+            generateTerritoryDatas(territoryMap);
+            HandlerFactory controller1 = HandlerFactory.getInstance();
+            GameLogic game2 =  controller1.getGameLogic();
+            gameState = new GameState(playerDataList,territoryDataList,Board.getContinents(), game2.getGameMode(),game2.getGamePhaseAsIndex());
+			
+			
 			saveLoadService = new MongoDBServiceAdapter();
+			
+			 saveLoadService.save(gameState);
 
 			break;
 
@@ -83,8 +93,13 @@ public class SaveLoadController implements Serializable {
 			case 0:
 				saveLoadService = new TextFileServiceAdapter();
 				 this.loadedGameState = saveLoadService.load();
-
-
+				 
+				break; 
+			case 1:
+				
+				 saveLoadService = new MongoDBServiceAdapter();
+				 this.loadedGameState = saveLoadService.load();
+				break;
 		}
 	}
 

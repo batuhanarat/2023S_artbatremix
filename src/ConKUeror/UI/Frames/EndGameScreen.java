@@ -26,7 +26,7 @@ public class EndGameScreen extends JFrame {
 
     private JPanel endGamePanel;
     //private JLabel winnerName;
-    private BufferedImage winnerImage;
+    private transient BufferedImage winnerImage;
     private JButton closeApplicationButton;
     private ButtonHandler buttonHandler;
 
@@ -37,7 +37,7 @@ public class EndGameScreen extends JFrame {
         this.buttonHandler = controller.giveButtonHandler();
         winnerImage = ImageIO.read(getClass().getResourceAsStream("/images/winner_image.jpeg"));
         endGamePanel = new JPanel() {
-            BufferedImage backgroundImage = winnerImage;
+            transient BufferedImage backgroundImage = winnerImage;
 
             @Override
             public void paintComponent(Graphics g) {

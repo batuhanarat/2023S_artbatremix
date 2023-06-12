@@ -6,13 +6,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 import javax.swing.JButton;
 
 import ConKUeror.domain.model.Player.Player;
 
-public class CustomButton extends JButton {
-    private Color backgroundColor;
+public class CustomButton extends JButton implements Serializable {
+    private transient Color backgroundColor;
     private String text;
     private Font font;
 

@@ -43,7 +43,7 @@ import ConKUeror.domain.model.Player.Player;
 import ConKUeror.domain.model.Player.PlayerExpert;
 import ConKUeror.domain.model.Player.PlayerInventory;
 
-public class GameLogic {
+public class GameLogic implements Serializable {
 
   private Board board;
   private PlayerInventory p;

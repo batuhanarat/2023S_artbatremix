@@ -3,13 +3,15 @@ package ConKUeror.domain.controller;
 
 
 
+import java.io.Serializable;
+
 import ConKUeror.domain.model.Board.Board;
 import ConKUeror.domain.model.Modes.BuildMode;
 import ConKUeror.domain.model.Modes.GameLogic;
 import ConKUeror.domain.model.Modes.StartMode;
 
 
-public class BuildHandler {
+public class BuildHandler implements Serializable {
 
 private static BuildHandler instance;
 private Boolean isFirstConfirmClick = true;

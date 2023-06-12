@@ -5,13 +5,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.swing.JButton;
 
 import ConKUeror.domain.controller.ButtonHandler;
 import ConKUeror.domain.controller.HandlerFactory;
 
-public class ActionButton extends JButton implements ActionListener {
+public class ActionButton extends JButton implements ActionListener,Serializable {
 
     private String _name;
     private int[] id;

@@ -18,6 +18,8 @@ import ConKUeror.UI.Panels.ChanceCardWindow;
 import ConKUeror.UI.Panels.PlayerInteractionPanel;
 import ConKUeror.domain.enums.GameMode;
 import java.io.IOException;
+import java.io.Serializable;
+
 import ConKUeror.domain.model.Army.Artillery;
 import ConKUeror.domain.model.Army.Cavalry;
 import ConKUeror.domain.model.Army.Infantry;
@@ -32,7 +34,7 @@ import ConKUeror.domain.model.Player.PlayerExpert;
 import ConKUeror.domain.model.Board.Die;
 import ConKUeror.domain.model.Board.DiceRoller;
 
-public class ButtonHandler {
+public class ButtonHandler implements Serializable {
     private static ButtonHandler instance;
     private BuildMode bMode;
     private GameLogic gMode;

@@ -19,7 +19,7 @@ public class Player implements Serializable {
     public PlayerInventory inv = new PlayerInventory();
     // private Army deployedArmy = new Army();
     private String type;
-    private Color playerColor;
+    private transient Color playerColor;
 
     IDeployBehaviour db;
     IAttackBehaviour ab;

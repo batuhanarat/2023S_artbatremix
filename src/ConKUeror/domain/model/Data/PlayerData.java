@@ -26,7 +26,7 @@ public class PlayerData implements Serializable{
     private List<Territory> territories;
     private PlayerInventory inventory;
     private String playerType;
-    private Color playerColor;
+    private transient Color playerColor;
     Player player;
     public PlayerData(Player player) {
         this.player = player;

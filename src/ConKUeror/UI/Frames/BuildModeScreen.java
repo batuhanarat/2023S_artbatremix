@@ -21,9 +21,9 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
     private Boolean canStart;
     private JPanel buildModePanel;
     private JLabel playerNumberLabel, botNumberLabel;
-    private JButton confirmButton;
-    private JButton startButton;
-    private JButton helpButton;
+    private transient JButton confirmButton;
+    private transient JButton startButton;
+    private transient JButton helpButton;
     private JComboBox<Integer> playerNumberBox;
     private JComboBox<Integer> botNumberBox;
 

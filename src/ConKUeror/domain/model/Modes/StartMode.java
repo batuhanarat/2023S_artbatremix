@@ -1,5 +1,6 @@
 package ConKUeror.domain.model.Modes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import ConKUeror.domain.controller.HandlerFactory;
 import ConKUeror.domain.model.Player.Player;
 import ConKUeror.domain.model.Player.PlayerExpert;
 
-public class StartMode {
+public class StartMode implements Serializable {
     private int playerCount;
     private BuildMode buildMode;
     private static List<Player> orderedPlayerList;
