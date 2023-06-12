@@ -36,7 +36,7 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
     private Integer[] botPlayerNumbers = {1, 2, 3, 4, 5};
 
     private BuildHandler buildHandler;
-
+    private MapView map;
     public BuildModeScreen(BuildHandler buildHandler) {
 
             this.buildHandler = buildHandler;
@@ -85,33 +85,51 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
     }
 
 
-    HandlerFactory controller = HandlerFactory.getInstance();
 
-    MapView map;
     
-//     Thread controllerThread = new Thread(() -> {
+    Thread controllerThread = new Thread(() -> {
+
+GameLogic logic = buildHandler.controller.getGameLogic();
+        
+
+    while(true) {
 
 
-//         while(true) {
-    
-//             //  System.out.println("test");
+
+
+            if(logic.currentGameMode == GameMode.ATTACK &&logic.territoriesAvailableForAttacks!= null && logic.ter != null ) {
+
+                System.out.println("hi");
+              
+                
+
+                 try {
+                 AnimationThread thread = new AnimationThread(logic.territoriesAvailableForAttacks,logic.ter,map,logic);
+                 thread.start();
+                 break;
+                 } catch (Exception e) {
+                     // TODO: handle exception
+                 }
+
+            }
+            else {
+              try {
+                System.out.println("not attacking");
+                Thread.sleep(200);
+              } catch (Exception e) {
+                // TODO: handle exception
+              }
+            }
 
             
-//     if(controller.getGameLogic().currentGameMode == GameMode.ATTACK) {
-
-
-//   AnimationThread t = new AnimationThread(controller.getGameLogic().territoriesAvailableForAttacks, controller.getGameLogic().ter,map);
-
-//   repaint();
-//     t.start();
-
-// }
-//     }
+            
+    
+   }
 
 
 
            
-// });
+ });
 
 
 
@@ -131,8 +149,8 @@ public class BuildModeScreen extends JFrame implements BuildModeListener{
                   try {
                      map = new MapView();
 
-                 AnimationThread thread = new AnimationThread(null, null, map, null)
-                     AnimationThread.start();
+                    controllerThread.start();
+
                     
 
 

@@ -25,9 +25,9 @@ ArrowAnimationController ar;
 GameLogic gmode;
 
 
-    public AnimationThread(MapView m,GameLogic gmode) {
+    public AnimationThread(ArrayList<Integer> territoriesAvailableForAttack,Territory t,MapView m,GameLogic gmode) {
 
-    this.t = t;
+     this.t = t;
     this.territoriesAvailableForAttack = territoriesAvailableForAttack;
     map = m;
     this.gmode = gmode;
@@ -47,7 +47,7 @@ GameLogic gmode;
       
           
 
-        if(gmode.currentGameMode == GameMode.ATTACK) {
+        
       for(int i: territoriesAvailableForAttack) {
 
 
@@ -57,9 +57,9 @@ GameLogic gmode;
           a.Animation(territory_id,i,map.g2d, line_width_end);
 
           
-          map.mapPanel.repaint();
+           map.mapPanel.repaint();
           
-          Thread.sleep(100);
+          Thread.sleep(500);
 
           if(a.getDistance()<line_width_end) line_width_end = 0;
         line_width_end+=2;
@@ -71,7 +71,6 @@ GameLogic gmode;
 
           
 
-      }
       
   
   

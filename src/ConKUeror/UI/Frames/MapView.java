@@ -61,7 +61,7 @@ public class MapView extends JFrame implements MapListener ,TerritoryButtonListe
     JPanel jPanel = new JPanel();
     JPanel jPanel2 =  new JPanel();
 
-   public static Graphics2D g2d;
+   public  Graphics2D g2d;
 
    public static JPanel mapPanell;
     JButton pauseAndResumeButton;
@@ -97,7 +97,7 @@ public MapView() throws IOException {
     this.gameHandler = controller.giveGameHandler();
 
 
-    
+
      frame = this;
 
 

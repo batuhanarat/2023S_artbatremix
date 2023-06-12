@@ -15,8 +15,9 @@ private static BuildHandler instance;
 private Boolean isFirstConfirmClick = true;
 private BuildMode buildMode;
 public Board board;
-private GameLogic gamelogic;
+public GameLogic gamelogic;
 private StartMode sMode;
+public HandlerFactory controller;
 
     private BuildHandler(BuildMode bMode) {
         this.buildMode = bMode;
@@ -70,7 +71,7 @@ private StartMode sMode;
 	public void initializeGame() {
 		Board.initAllTerritoriesAndContinents();
 		buildMode.initalizeConnections();
-		HandlerFactory controller = HandlerFactory.getInstance();
+		 controller = HandlerFactory.getInstance();
 		StartHandler startHandler =controller.giveStartHandler();
 		startHandler.setStartMode();
     }
