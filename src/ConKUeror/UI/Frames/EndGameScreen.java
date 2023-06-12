@@ -36,22 +36,16 @@ public class EndGameScreen extends JFrame {
         HandlerFactory controller = HandlerFactory.getInstance();
         this.buttonHandler = controller.giveButtonHandler();
         winnerImage = ImageIO.read(getClass().getResourceAsStream("/images/winner_image.jpeg"));
-        endGamePanel = new JPanel() {
-            BufferedImage backgroundImage = winnerImage;
-
-            @Override
-            public void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(backgroundImage, 0, 0, null); // draw the image
-            }
-        };
+        endGamePanel = new JPanel();
         endGamePanel.setLayout(new BorderLayout());
         setSize(winnerImage.getWidth(), winnerImage.getHeight());
         JLabel winnerImageLabel = new JLabel(new ImageIcon(winnerImage));
+        JLabel winnerTitle = new JLabel(player.getName() + " wins!");
+        endGamePanel.add(winnerTitle);
         endGamePanel.add(winnerImageLabel);
-        closeApplicationButton = new JButton("Close Game");
-        closeApplicationButton.addActionListener(new CloseApplicationButtonListener());
-        endGamePanel.add(closeApplicationButton);
+        // closeApplicationButton = new JButton("Close Game");
+        // closeApplicationButton.addActionListener(new CloseApplicationButtonListener());
+        // endGamePanel.add(closeApplicationButton);
         this.add(endGamePanel);
     }
 
